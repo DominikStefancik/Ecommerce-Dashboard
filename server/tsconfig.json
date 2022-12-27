@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": ["es2019"],
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@local/auth/*": ["auth/*"],
+      "@local/database/*": ["database/*"],
+      "@local/domain/*": ["domain/*"],
+      "@local/express/*": ["express/*"],
+      "@local/interfaces/*": ["interfaces/*"],
+      "@local/logging/*": ["logging/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "./src/**/*.test.js",
+    "./src/**/*.spec.js",
+    "./src/tests",
+    "dist"
+  ]
+}
