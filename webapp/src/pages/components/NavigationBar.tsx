@@ -13,7 +13,11 @@ import { FlexBoxInBetween } from './styled';
 import { setTheme } from '../../redux-store';
 import { ThemeMode } from '../../theme';
 
-const NavigationBar = () => {
+interface NavigationBarProps {
+  toggleSideBar: () => void;
+}
+
+const NavigationBar = ({ toggleSideBar }: NavigationBarProps) => {
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -22,7 +26,7 @@ const NavigationBar = () => {
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* LEFT SIDE */}
         <FlexBoxInBetween>
-          <IconButton onClick={() => console.log('Open/Close sidebar')}>
+          <IconButton onClick={() => toggleSideBar()}>
             <MenuIcon />
           </IconButton>
           <FlexBoxInBetween
