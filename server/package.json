@@ -1,5 +1,5 @@
 {
-  "name": "@ed/server",
+  "name": "@ecommerce-dashboard/server",
   "version": "1.0.0",
   "description": "A server app for managing different e-commerce data using Node, Typescript, Express, MongoDB",
   "main": "dist/src/index.js",
