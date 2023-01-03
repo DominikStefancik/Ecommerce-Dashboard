@@ -124,6 +124,30 @@ export class ExpressAppBuilder {
     );
   }
 
+  public withGeneralRoute(
+    prefix: string,
+    versionTag: VersionTag,
+    middleware: ExpressRequestHandler[]
+  ): ExpressAppBuilder {
+    return this.withRoute(Consumer.general, prefix, versionTag, middleware);
+  }
+
+  public withGeneralRouteEndpoints(prefix: string, versionTag: VersionTag, endpoints: Endpoints) {
+    // A route for these endpoints has to be created before the endpoints are added, otherwise an error is thrown
+    return this.withEndpoints(Consumer.general, prefix, versionTag, endpoints);
+  }
+
+  public withGeneralEndpoints(versionTag: VersionTag, endpoints: Endpoints) {
+    const consumer = Consumer.general;
+
+    return this.withDefaultRoute(consumer, versionTag).withEndpoints(
+      consumer,
+      this.defaultPrefix[consumer],
+      versionTag,
+      endpoints
+    );
+  }
+
   private withDefaultRoute(consumer: Consumer, versionTag: VersionTag): ExpressAppBuilder {
     const prefix = this.defaultPrefix[consumer];
     const route = this.endpoints[consumer]?.[prefix]?.[versionTag];

@@ -9,8 +9,8 @@ import { AuthenticationMiddlewareFactory } from '@local/express/middleware/authe
 import { VersionTag } from '@local/express/routing/routes';
 import { MODULE_NAME, PORT, DATABASE_URL, DATABASE_NAME } from './constants';
 import { getLogger } from './logging/logger';
-import { HttpResponseCode } from '@local/express/http/http-response-code';
 import { MongoConnection } from '@local/database/mongo-connection';
+import { UserEndpoint } from '@local/domain/user/single-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environments variables are not set');
@@ -31,17 +31,11 @@ const main = async (): Promise<express.Express> => {
   await dbConnection.connect();
 
   return new ExpressAppBuilder(logger)
-    .withClientRoute('api', VersionTag.v1, [
+    .withGeneralRoute('api', VersionTag.v1, [
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
     ])
-    .withClientRouteEndpoints('api', VersionTag.v1, {
-      '/test': {
-        getHandler: () =>
-          Promise.resolve({
-            code: HttpResponseCode.OK,
-            payload: 'Hello World from the server',
-          }),
-      },
+    .withGeneralRouteEndpoints('api', VersionTag.v1, {
+      [UserEndpoint.PATH]: new UserEndpoint(),
     })
     .build();
 };

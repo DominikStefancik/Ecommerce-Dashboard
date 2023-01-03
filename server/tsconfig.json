@@ -23,7 +23,9 @@
       "@local/express/*": ["express/*"],
       "@local/interfaces/*": ["interfaces/*"],
       "@local/logging/*": ["logging/*"]
-    }
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts",
