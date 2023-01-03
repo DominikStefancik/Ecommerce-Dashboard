@@ -28,4 +28,10 @@ export class MongoConnection {
     await mongoose.disconnect();
     this.logger.info('Database disconnected.');
   }
+
+  public async dropDatabase() {
+    this.logger.info('Dropping database...');
+    await mongoose.connection.dropDatabase();
+    this.logger.info('Database dropped.');
+  }
 }
