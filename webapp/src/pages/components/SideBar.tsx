@@ -11,6 +11,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Divider,
 } from '@mui/material';
 import {
   ChevronLeft,
@@ -26,10 +27,12 @@ import {
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
   ChevronRightOutlined,
+  SettingsOutlined,
 } from '@mui/icons-material';
 
 import { FlexBoxInBetween } from './styled';
 import { Path } from '../../path';
+import { User } from '../../models/user';
 
 const sections = [
   { name: 'Dashboard', icon: <HomeOutlined />, path: Path.DASHBOARD },
@@ -67,9 +70,10 @@ interface SideBarProps {
   toggleOpen: () => void;
   isDesktop: boolean;
   drawerWidth: string;
+  user?: User;
 }
 
-const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth }: SideBarProps) => {
+const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarProps) => {
   const { pathname } = useLocation();
   const [activePage, setActivePage] = useState('');
   const navigate = useNavigate();
@@ -162,6 +166,40 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth }: SideBarProps) =
               })}
             </List>
           </Box>
+          {user && (
+            <Box sx={{ position: 'absolute', bottom: '2rem' }}>
+              <Divider />
+              <FlexBoxInBetween
+                sx={{ textTransform: 'none', gap: '1rem', margin: '1.5rem 2rem 0 3rem' }}
+              >
+                <Box
+                  component="img"
+                  src=""
+                  sx={{ height: '40px', width: '40px', borderRadius: '50%', objectFit: 'cover' }}
+                />
+                <Box sx={{ textAlign: 'left' }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: '0.9rem',
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    {user.firstName}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: '0.8rem',
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    {user.occupation}
+                  </Typography>
+                </Box>
+                <SettingsOutlined sx={{ color: theme.palette.secondary.light, fontSize: '25px' }} />
+              </FlexBoxInBetween>
+            </Box>
+          )}
         </Drawer>
       )}
     </Box>

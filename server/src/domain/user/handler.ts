@@ -1,13 +1,21 @@
 import { Logger } from 'pino';
+
 import { HandlerResponse } from '@local/interfaces/networking/endpoint-handler';
 import { HttpResponseCode } from '@local/express/http/http-response-code';
+import { UserRepository } from '@local/domain/user/database/repository';
+import { User } from '@local/domain/user/database/model';
 
 export class UserHandler {
-  public constructor(private readonly logger: Logger) {}
+  public constructor(
+    private readonly repository: UserRepository,
+    private readonly logger: Logger
+  ) {}
 
-  public handleGet(id: string): Promise<HandlerResponse<any>> {
+  public async handleGet(id: string): Promise<HandlerResponse<User>> {
     this.logger.info({ id }, 'Handling GET request...');
 
-    return Promise.resolve({ code: HttpResponseCode.OK, payload: {} });
+    const user = await this.repository.getUser(id);
+
+    return { code: HttpResponseCode.OK, payload: user };
   }
 }

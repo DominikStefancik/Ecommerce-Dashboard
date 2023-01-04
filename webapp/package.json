@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "PORT=3001 vite",
     "rebuild": "tsc && vite build",
     "preview": "vite preview",
     "prettify": "prettier --write \"./src/**/*.{js,ts,jsx,tsx,json}\""
@@ -27,6 +27,7 @@
     "react-router-dom": "^6.6.1"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",

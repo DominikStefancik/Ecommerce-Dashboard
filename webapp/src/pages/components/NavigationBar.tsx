@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useTheme, AppBar, Toolbar, IconButton, Input } from '@mui/material';
+import {
+  useTheme,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Input,
+  Button,
+  Box,
+  Typography,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import {
   Menu as MenuIcon,
   Search,
   DarkModeOutlined,
   LightModeOutlined,
   SettingsOutlined,
+  ArrowDropDownOutlined,
 } from '@mui/icons-material';
 
 import { FlexBoxInBetween } from './styled';
 import { setTheme } from '../../redux-store';
 import { ThemeMode } from '../../theme';
+import { User } from '../../models/user';
 
 interface NavigationBarProps {
   toggleSideBar: () => void;
+  user?: User;
 }
 
-const NavigationBar = ({ toggleSideBar }: NavigationBarProps) => {
+const NavigationBar = ({ toggleSideBar, user }: NavigationBarProps) => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const [anchorElement, setAnchorElement] = useState(null);
+  const isMenuOpen = Boolean(anchorElement);
+
+  // @ts-ignore
+  const handleChangeTheme = () => dispatch(setTheme());
+  const handleMenuButtonClick = (event: any) => setAnchorElement(event.currentTarget);
+  const handleCloseMenu = () => setAnchorElement(null);
 
   return (
     <AppBar sx={{ position: 'static', background: 'none', boxShadow: 'none' }}>
@@ -44,7 +65,7 @@ const NavigationBar = ({ toggleSideBar }: NavigationBarProps) => {
 
         {/* RIGHT SIDE */}
         <FlexBoxInBetween gap="1.5rem">
-          <IconButton onClick={() => dispatch(setTheme())}>
+          <IconButton onClick={handleChangeTheme}>
             {theme.palette.mode === ThemeMode.dark ? (
               <DarkModeOutlined sx={{ fontSize: '25px' }} />
             ) : (
@@ -54,6 +75,56 @@ const NavigationBar = ({ toggleSideBar }: NavigationBarProps) => {
           <IconButton>
             <SettingsOutlined sx={{ fontSize: '25px' }} />
           </IconButton>
+          {user && (
+            <FlexBoxInBetween>
+              <Button
+                onClick={handleMenuButtonClick}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  textTransform: 'none',
+                  gap: '1rem',
+                }}
+              >
+                <Box
+                  component="img"
+                  src=""
+                  sx={{ height: '32px', width: '32px', borderRadius: '50%', objectFit: 'cover' }}
+                />
+                <Box sx={{ textAlign: 'left' }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: '0.85rem',
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    {user.firstName}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: '0.75rem',
+                      color: theme.palette.secondary.main,
+                    }}
+                  >
+                    {user.occupation}
+                  </Typography>
+                </Box>
+                <ArrowDropDownOutlined
+                  sx={{ color: theme.palette.secondary.light, fontSize: '25px' }}
+                />
+              </Button>
+              <Menu
+                anchorEl={anchorElement}
+                open={isMenuOpen}
+                onClose={handleCloseMenu}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              >
+                <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
+              </Menu>
+            </FlexBoxInBetween>
+          )}
         </FlexBoxInBetween>
       </Toolbar>
     </AppBar>

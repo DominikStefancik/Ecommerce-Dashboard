@@ -1,10 +1,20 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: { port: 3001, strictPort: true },
-  preview: { port: 3001, strictPort: true },
-  logLevel: 'info',
+export default defineConfig(({ command, mode }) => {
+  // Load env file based on `mode` in the current working directory.
+  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
+  const env = loadEnv(mode, process.cwd(), '');
+
+  // vite config
+  return {
+    plugins: [react()],
+    server: { port: Number(env.PORT), strictPort: true },
+    preview: { port: Number(env.PORT), strictPort: true },
+    logLevel: 'info',
+    // we have to explicitly define 'process.env', because VITE doesn't have access to env variables without prefix VITE_
+    // and if we reference 'process' from anywhere in the code the 'ReferenceError: process is not defined' is thrown
+    define: { 'process.env': env },
+  };
 });
