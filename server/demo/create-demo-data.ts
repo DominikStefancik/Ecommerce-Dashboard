@@ -3,7 +3,11 @@ import 'module-alias/register';
 import { MongoConnection } from '@local/database/mongo-connection';
 import { getLogger } from '@local/logging/logger';
 import { UserModel } from '@local/domain/user/database/model';
+import { ProductModel } from '@local/domain/product/database/model';
+import { ProductStatisticsModel } from '@local/domain/statistics/product-statistics/database/model';
 import { dataUser } from './data/user-demo-data';
+import { dataProduct } from './data/product-demo-data';
+import { dataProductStatistics } from './data/product-statistics-demo-data';
 
 const logger = getLogger('demo');
 const dbConnection = new MongoConnection(
@@ -24,6 +28,16 @@ const importDemoData = async () => {
   logger.info('Importing users...');
   await UserModel.insertMany(dataUser);
   logger.info(`Imported ${dataUser.length} users`);
+
+  // Products
+  logger.info('Importing products...');
+  await ProductModel.insertMany(dataProduct);
+  logger.info(`Imported ${dataProduct.length} products`);
+
+  // Product Statistics
+  logger.info('Importing product statistics...');
+  await ProductStatisticsModel.insertMany(dataProductStatistics);
+  logger.info(`Imported ${dataProductStatistics.length} product statistics`);
 
   logger.info('All data imported');
 
