@@ -1,7 +1,7 @@
 import { createSlice, configureStore, SliceCaseReducers } from '@reduxjs/toolkit';
 
 import { ThemeMode } from '../theme';
-import { api } from './api';
+import { api } from './api/api';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 export interface State {
