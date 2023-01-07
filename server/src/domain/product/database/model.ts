@@ -1,3 +1,4 @@
+import * as mongoose from 'mongoose';
 import { prop, modelOptions, getModelForClass } from '@typegoose/typegoose';
 
 export enum ProductCategory {
@@ -9,6 +10,9 @@ export enum ProductCategory {
 
 @modelOptions({ schemaOptions: { collection: 'products', timestamps: true } })
 export class Product {
+  @prop({ required: true })
+  public _id!: mongoose.Types.ObjectId;
+
   @prop({ required: true })
   public name!: string;
 
