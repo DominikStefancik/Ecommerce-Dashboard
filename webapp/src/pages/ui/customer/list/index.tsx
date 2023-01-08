@@ -2,9 +2,9 @@ import React from 'react';
 import { useTheme, Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { useGetCustomersQuery } from '../../../redux-store/api/api';
-import Header from '../../components/Header';
-import { UserRole } from '../../../models/user';
+import { useGetCustomersQuery } from '@local/redux-store/api/api';
+import Header from '@local/pages/ui/components/Header';
+import { UserRole } from '@local/pages/models/user';
 
 const columns = [
   // property 'flex' says how we want each column to grow, shrink and how much space it can take up

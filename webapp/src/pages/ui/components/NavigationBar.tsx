@@ -22,9 +22,9 @@ import {
 } from '@mui/icons-material';
 
 import { FlexBoxInBetween } from './styled';
-import { setTheme } from '../../redux-store';
-import { ThemeMode } from '../../theme';
-import { User } from '../../models/user';
+import { setTheme } from '@local/redux-store/index';
+import { ThemeMode } from '@local/pages/theme';
+import { User } from '@local/pages/models/user';
 
 interface NavigationBarProps {
   toggleSideBar: () => void;

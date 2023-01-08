@@ -3,12 +3,12 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
 
-import { themeSettings } from './theme';
-import Layout from './pages/components/Layout';
-import { Path } from './path';
-import Dashboard from './pages/dashboard';
-import ProductList from './pages/product/ui/list';
-import CustomerList from './pages/customer/list';
+import { themeSettings } from '@local/pages/theme';
+import Layout from '@local/pages/ui/components/Layout';
+import { Path } from '@local/pages/path';
+import Dashboard from '@local/pages/ui/dashboard';
+import ProductList from '@local/pages/ui/product/ui/list';
+import CustomerList from '@local/pages/ui/customer/list';
 
 const WebApp = () => {
   const themeMode = useSelector((state: any) => state.global.themeMode);

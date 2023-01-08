@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -17,5 +18,12 @@ export default defineConfig(({ command, mode }) => {
     // and if we reference 'process' from anywhere in the code the 'ReferenceError: process is not defined' is thrown
     define: { 'process.env': env },
     build: { chunkSizeWarningLimit: 1024 },
+    resolve: {
+      alias: {
+        '@local/root': path.join(__dirname, 'src'),
+        '@local/pages': path.join(__dirname, 'src', 'pages'),
+        '@local/redux-store': path.join(__dirname, 'src', 'redux-store'),
+      },
+    },
   };
 });

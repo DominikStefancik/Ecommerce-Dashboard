@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 
-import Header from '../../../components/Header';
-import { useGetProductsQuery } from '../../../../redux-store/api/api';
-import { Product } from '../../models/product';
-import ProductCard from '../components/ProductCard';
+import Header from '@local/pages/ui/components/Header';
+import { useGetProductsQuery } from '@local/redux-store/api/api';
+import { Product } from '@local/pages/ui/product/models/product';
+import ProductCard from '@local/pages/ui/product/ui/components/ProductCard';
 
 const ProductList = () => {
   // if the minimum width is achieved on the screen then we know the client device is desktop

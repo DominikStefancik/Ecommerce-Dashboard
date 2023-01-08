@@ -31,8 +31,8 @@ import {
 } from '@mui/icons-material';
 
 import { FlexBoxInBetween } from './styled';
-import { Path } from '../../path';
-import { User } from '../../models/user';
+import { Path } from '@local/pages/path';
+import { User } from '@local/pages/models/user';
 
 const sections = [
   { name: 'Dashboard', icon: <HomeOutlined />, path: Path.DASHBOARD },

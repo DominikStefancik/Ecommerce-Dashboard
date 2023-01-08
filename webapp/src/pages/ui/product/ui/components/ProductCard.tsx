@@ -10,7 +10,7 @@ import {
   Collapse,
 } from '@mui/material';
 
-import { Product as ProductModel } from '../../models/product';
+import { Product as ProductModel } from '@local/pages/ui/product/models/product';
 
 interface ProductCardProps {
   product: ProductModel;

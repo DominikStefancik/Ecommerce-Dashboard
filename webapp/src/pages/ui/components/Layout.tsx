@@ -5,8 +5,8 @@ import { Box, useMediaQuery } from '@mui/material';
 
 import NavigationBar from './NavigationBar';
 import SideBar from './SideBar';
-import { useSideBarOpen } from '../../hooks/sidebar';
-import { useGetUserQuery } from '../../redux-store/api/api';
+import { useSideBarOpen } from './hooks/sidebar';
+import { useGetUserQuery } from '@local/redux-store/api/api';
 
 /**
  * Component representing the layout of all pages in the whole application

@@ -1,8 +1,8 @@
 import { createSlice, configureStore, SliceCaseReducers } from '@reduxjs/toolkit';
-
-import { ThemeMode } from '../theme';
-import { api } from './api/api';
 import { setupListeners } from '@reduxjs/toolkit/query';
+
+import { ThemeMode } from '@local/pages/theme';
+import { api } from './api/api';
 
 export interface State {
   themeMode: ThemeMode;
