@@ -8,6 +8,7 @@ import Layout from './pages/components/Layout';
 import { Path } from './path';
 import Dashboard from './pages/dashboard';
 import ProductList from './pages/product/ui/list';
+import CustomerList from './pages/customer/list';
 
 const WebApp = () => {
   const themeMode = useSelector((state: any) => state.global.themeMode);
@@ -23,6 +24,7 @@ const WebApp = () => {
             <Route path={Path.HOME} element={<Navigate to={Path.DASHBOARD} replace />} />
             <Route path={Path.DASHBOARD} element={<Dashboard />} />
             <Route path={Path.PRODUCTS} element={<ProductList />} />
+            <Route path={Path.CUSTOMERS} element={<CustomerList />} />
           </Route>
         </Routes>
       </ThemeProvider>

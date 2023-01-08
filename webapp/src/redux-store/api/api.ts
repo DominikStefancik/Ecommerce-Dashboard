@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { SERVER_BASE_URL } from '../../constants';
-import { USERS, PRODUCTS } from './endpoints';
+import { USERS, PRODUCTS, CUSTOMERS } from './endpoints';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_BASE_URL }),
   reducerPath: 'adminApi',
-  tagTypes: ['User', 'Products'],
+  tagTypes: ['User', 'Products', 'Customers'],
   endpoints: (build) => ({
     // this creates a hook called 'useGetUserQuery' which we will be able to use to call the user endpoint
     getUser: build.query<any, string>({
@@ -18,7 +18,11 @@ export const api = createApi({
       query: (_: void) => PRODUCTS,
       providesTags: ['Products'],
     }),
+    getCustomers: build.query({
+      query: (_: void) => CUSTOMERS,
+      providesTags: ['Customers'],
+    }),
   }),
 });
 
-export const { useGetUserQuery, useGetProductsQuery } = api;
+export const { useGetUserQuery, useGetProductsQuery, useGetCustomersQuery } = api;

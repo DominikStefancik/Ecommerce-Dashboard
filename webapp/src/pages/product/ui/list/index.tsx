@@ -14,7 +14,7 @@ const ProductList = () => {
   return (
     <Box sx={{ margin: '1.5rem 2.5rem' }}>
       <Header title="PRODUCTS" subtitle="See your list of products" />
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <div>Loading products...</div>}
       {data && (
         <Box
           sx={{
