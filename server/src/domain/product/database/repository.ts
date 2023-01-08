@@ -1,4 +1,5 @@
 import { Logger } from 'pino';
+import { ProjectionFields } from 'mongoose';
 import { mongoose } from '@typegoose/typegoose';
 import { DocumentType } from '@typegoose/typegoose/lib/types';
 
@@ -11,7 +12,10 @@ export class ProductRepository {
     this.model = ProductModel;
   }
 
-  public async getProduct(id: string): Promise<Product | null> {
+  public async getProduct(
+    id: string,
+    projection?: ProjectionFields<Product>
+  ): Promise<Product | null> {
     this.logger.info({ id }, 'Fetching a single product from the database');
 
     /*
@@ -19,15 +23,18 @@ export class ProductRepository {
      * Documents are much heavier than vanilla JavaScript objects, because they have a lot of internal state for change tracking.
      * Enabling the lean option tells Mongoose to skip instantiating a full Mongoose document and just give you the POJO.
      * */
-    const product = await this.model.findById(id).lean();
+    const product = await this.model.findById(id, projection, { lean: true });
 
     return product;
   }
 
-  public async getProducts(filter: any): Promise<Product[]> {
+  public async getProducts(
+    filter: any,
+    projection?: ProjectionFields<Product>
+  ): Promise<Product[]> {
     this.logger.info({ filter }, 'Fetching products from the database');
 
-    const products = await this.model.find(filter).lean();
+    const products = await this.model.find(filter, projection, { lean: true });
 
     return products;
   }

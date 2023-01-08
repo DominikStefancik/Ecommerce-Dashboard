@@ -1,4 +1,5 @@
 import { Logger } from 'pino';
+import { ProjectionFields } from 'mongoose';
 import { mongoose } from '@typegoose/typegoose';
 
 import { User, UserModel } from '@local/domain/user/database/model';
@@ -11,10 +12,10 @@ export class UserRepository {
     this.model = UserModel;
   }
 
-  public async getUser(id: string): Promise<User> {
+  public async getUser(id: string, projection?: ProjectionFields<User>): Promise<User> {
     this.logger.info({ id }, 'Fetching user from the database');
 
-    const user = await this.model.findById(id);
+    const user = await this.model.findById(id, projection);
 
     if (!user) {
       // TODO: Create a domain error + its hierarchy
@@ -22,5 +23,17 @@ export class UserRepository {
     }
 
     return user;
+  }
+
+  public async getUsers(filter: any, projection?: ProjectionFields<User>): Promise<User[]> {
+    this.logger.info({ filter }, 'Fetching users with the filter from the database');
+
+    const users = await this.model.find(filter, projection);
+
+    return users;
+  }
+
+  public async getAllUsers(): Promise<User[]> {
+    return this.getUsers({});
   }
 }

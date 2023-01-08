@@ -12,6 +12,7 @@ import { getLogger } from './logging/logger';
 import { MongoConnection } from '@local/database/mongo-connection';
 import { UserEndpoint } from '@local/domain/user/single-endpoint';
 import { ProductCollectionEndpoint } from '@local/domain/product/collection-endpoint';
+import { CustomerCollectionEndpoint } from '@local/domain/customer/collection-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environments variables are not set');
@@ -36,6 +37,7 @@ const main = async (): Promise<express.Express> => {
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
     ])
     .withClientRouteEndpoints('api', VersionTag.v1, {
+      [CustomerCollectionEndpoint.PATH]: new CustomerCollectionEndpoint(),
       [ProductCollectionEndpoint.PATH]: new ProductCollectionEndpoint(),
     })
     .withGeneralRoute('api', VersionTag.v1, [

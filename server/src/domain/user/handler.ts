@@ -14,7 +14,7 @@ export class UserHandler {
   public async handleGet(id: string): Promise<HandlerResponse<User>> {
     this.logger.info({ id }, 'Handling GET request...');
 
-    const user = await this.repository.getUser(id);
+    const user = await this.repository.getUser(id, { password: false });
 
     return { code: HttpResponseCode.OK, payload: user };
   }
