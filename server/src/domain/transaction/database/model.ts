@@ -1,6 +1,15 @@
-import { modelOptions, getModelForClass } from '@typegoose/typegoose';
+import { modelOptions, getModelForClass, prop } from '@typegoose/typegoose';
 
 @modelOptions({ schemaOptions: { collection: 'transactions', timestamps: true } })
-export class Transaction {}
+export class Transaction {
+  @prop({ required: true })
+  public userId!: string;
 
-export const transactionModel = getModelForClass(Transaction);
+  @prop({ required: true })
+  public cost!: number;
+
+  @prop({ required: true, type: () => [String] })
+  public products!: string[];
+}
+
+export const TransactionModel = getModelForClass(Transaction);
