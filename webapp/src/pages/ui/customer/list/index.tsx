@@ -20,7 +20,8 @@ const columns = [
     headerName: 'Phone Number',
     flex: 0.5,
     // customization of rendering of the cell
-    renderCell: (params: any) => params.value.replace(/^(\d{3})(\d{3})(\d{4})/, '($1)$2-$3'),
+    renderCell: (parameters: any) =>
+      parameters.value.replace(/^(\d{3})(\d{3})(\d{4})/, '($1)$2-$3'),
   },
   { field: 'country', headerName: 'Country', flex: 0.4 },
   {
@@ -32,9 +33,10 @@ const columns = [
     field: 'role',
     headerName: 'Role',
     flex: 0.5,
-    renderCell: (params: any) => renderRole(params.value),
+    renderCell: (parameters: any) => renderRole(parameters.value),
   },
 ];
+
 const renderRole = (value: UserRole): string => {
   switch (value) {
     case UserRole.USER:
