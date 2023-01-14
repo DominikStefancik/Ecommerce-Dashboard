@@ -17,7 +17,7 @@ export default defineConfig(({ command, mode }) => {
     // we have to explicitly define 'process.env', because VITE doesn't have access to env variables without prefix VITE_
     // and if we reference 'process' from anywhere in the code the 'ReferenceError: process is not defined' is thrown
     define: { 'process.env': env },
-    build: { chunkSizeWarningLimit: 1024 },
+    build: { chunkSizeWarningLimit: 4096 },
     resolve: {
       alias: {
         '@local/root': path.join(__dirname, 'src'),

@@ -4,7 +4,7 @@ export enum Path {
   PRODUCTS = '/products',
   CUSTOMERS = '/customers',
   TRANSACTIONS = '/transactions',
-  GEOGRAPHY = '/geography',
+  GEOGRAPHY_USERS = '/geography-users',
   SALES_OVERVIEW = '/sales-overview',
   SALES_DAILY = '/sales-daily',
   SALES_MONTHLY = '/sales-monthly',

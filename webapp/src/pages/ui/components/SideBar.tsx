@@ -47,7 +47,7 @@ const sections = [
     icon: <ReceiptLongOutlined />,
     path: Path.TRANSACTIONS,
   },
-  { name: 'Geography', icon: <PublicOutlined />, path: Path.GEOGRAPHY },
+  { name: 'Geography (Users)', icon: <PublicOutlined />, path: Path.GEOGRAPHY_USERS },
   { name: 'Sales', icon: null },
   { name: 'Overview', icon: <PointOfSaleOutlined />, path: Path.SALES_OVERVIEW },
   {

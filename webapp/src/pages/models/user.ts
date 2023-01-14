@@ -12,7 +12,7 @@ export interface User {
   password: string;
   city?: string;
   state?: string;
-  country?: string;
+  country: string;
   occupation?: string;
   phoneNumber?: string;
   transactions?: string[];

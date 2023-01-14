@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { SERVER_BASE_URL } from '../../constants';
-import { USERS, PRODUCTS, CUSTOMERS, TRANSACTIONS } from './endpoints';
+import { USERS, PRODUCTS, CUSTOMERS, TRANSACTIONS, GEOGRAPHY } from './endpoints';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_BASE_URL }),
   reducerPath: 'adminApi',
-  tagTypes: ['User', 'Products', 'Customers', 'Transactions'],
+  tagTypes: ['User', 'Products', 'Customers', 'Transactions', 'GeographyUsers'],
   endpoints: (build) => ({
     // this creates a hook called 'useGetUserQuery' which we will be able to use to call the user endpoint
     getUser: build.query<any, string>({
@@ -32,6 +32,10 @@ export const api = createApi({
       },
       providesTags: ['Transactions'],
     }),
+    getGeographyUsers: build.query({
+      query: (_: void) => `${GEOGRAPHY}/users`,
+      providesTags: ['GeographyUsers'],
+    }),
   }),
 });
 
@@ -40,4 +44,5 @@ export const {
   useGetProductsQuery,
   useGetCustomersQuery,
   useGetTransactionsQuery,
+  useGetGeographyUsersQuery,
 } = api;
