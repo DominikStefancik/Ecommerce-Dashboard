@@ -22,7 +22,8 @@
       "@local/domain/*": ["domain/*"],
       "@local/express/*": ["express/*"],
       "@local/interfaces/*": ["interfaces/*"],
-      "@local/logging/*": ["logging/*"]
+      "@local/logging/*": ["logging/*"],
+      "@local/utils/*": ["utils/*"]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true

@@ -60,6 +60,7 @@
     "@local/domain": "dist/src/domain",
     "@local/express": "dist/src/express",
     "@local/interfaces": "dist/src/interfaces",
-    "@local/logging": "dist/src/logging"
+    "@local/logging": "dist/src/logging",
+    "@local/utils": "dist/src/utils"
   }
 }

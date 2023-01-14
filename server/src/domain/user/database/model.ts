@@ -33,7 +33,7 @@ export class User {
   public state?: string;
 
   @prop({ minlength: 2, maxlength: 70 })
-  public country?: string;
+  public country!: string;
 
   @prop({ minlength: 2, maxlength: 70 })
   public occupation?: string;
