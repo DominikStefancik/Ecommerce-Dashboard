@@ -6,11 +6,11 @@ import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
 import { themeSettings } from '@local/pages/theme';
 import Layout from '@local/pages/ui/components/Layout';
 import { Path } from '@local/pages/path';
-import Dashboard from '@local/pages/ui/dashboard';
-import ProductList from '@local/pages/ui/product/ui/list';
-import CustomerList from '@local/pages/ui/customer/list';
-import TransactionList from '@local/pages/ui/transaction/list';
+import DashboardPage from '@local/pages/ui/dashboard';
+import ProductListPage from '@local/pages/ui/product/ui/list';
+import TransactionListPage from '@local/pages/ui/transaction/list';
 import GeographyUsersPage from '@local/pages/ui/geography/ui/user';
+import CustomersListPage from '@local/pages/ui/customer/list';
 
 const WebApp = () => {
   const themeMode = useSelector((state: any) => state.global.themeMode);
@@ -24,10 +24,10 @@ const WebApp = () => {
         <Routes>
           <Route element={<Layout />}>
             <Route path={Path.HOME} element={<Navigate to={Path.DASHBOARD} replace />} />
-            <Route path={Path.DASHBOARD} element={<Dashboard />} />
-            <Route path={Path.PRODUCTS} element={<ProductList />} />
-            <Route path={Path.CUSTOMERS} element={<CustomerList />} />
-            <Route path={Path.TRANSACTIONS} element={<TransactionList />} />
+            <Route path={Path.DASHBOARD} element={<DashboardPage />} />
+            <Route path={Path.PRODUCTS} element={<ProductListPage />} />
+            <Route path={Path.CUSTOMERS} element={<CustomersListPage />} />
+            <Route path={Path.TRANSACTIONS} element={<TransactionListPage />} />
             <Route path={Path.GEOGRAPHY_USERS} element={<GeographyUsersPage />} />
           </Route>
         </Routes>
