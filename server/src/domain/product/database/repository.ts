@@ -1,12 +1,11 @@
 import { Logger } from 'pino';
-import { ProjectionFields } from 'mongoose';
-import { mongoose } from '@typegoose/typegoose';
+import { ProjectionFields, Model } from 'mongoose';
 import { DocumentType } from '@typegoose/typegoose/lib/types';
 
 import { Product, ProductModel } from '@local/domain/product/database/model';
 
 export class ProductRepository {
-  private readonly model: mongoose.Model<DocumentType<Product>>;
+  private readonly model: Model<DocumentType<Product>>;
 
   public constructor(private readonly logger: Logger) {
     this.model = ProductModel;

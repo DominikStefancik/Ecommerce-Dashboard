@@ -1,12 +1,11 @@
 import { Logger } from 'pino';
-import { ProjectionFields } from 'mongoose';
-import { mongoose } from '@typegoose/typegoose';
+import { ProjectionFields, Model } from 'mongoose';
 
 import { User, UserModel } from '@local/domain/user/database/model';
 import { DocumentType } from '@typegoose/typegoose/lib/types';
 
 export class UserRepository {
-  private readonly model: mongoose.Model<DocumentType<User>>;
+  private readonly model: Model<DocumentType<User>>;
 
   constructor(private readonly logger: Logger) {
     this.model = UserModel;

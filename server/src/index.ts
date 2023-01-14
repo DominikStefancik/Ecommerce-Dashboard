@@ -6,7 +6,7 @@ import express from 'express';
 import { ExternalSystemApiVerifier } from '@local/auth/auth-verifier/external-system-api-verifier';
 import { ExpressAppBuilder } from '@local/express/express-app-builder';
 import { AuthenticationMiddlewareFactory } from '@local/express/middleware/authentication-middleware-factory';
-import { VersionTag } from '@local/express/routing/routes';
+import { VersionTag, RoutePrefix } from '@local/express/routing/routes';
 import { MODULE_NAME, PORT, DATABASE_URL, DATABASE_NAME } from './constants';
 import { getLogger } from './logging/logger';
 import { MongoConnection } from '@local/database/mongo-connection';
@@ -15,6 +15,7 @@ import { ProductCollectionEndpoint } from '@local/domain/product/collection-endp
 import { CustomerCollectionEndpoint } from '@local/domain/customer/collection-endpoint';
 import { TransactionCollectionEndpoint } from '@local/domain/transaction/collection-endpoint';
 import { GeographyUserCollectionEndpoint } from '@local/domain/geography/user/collection-endpoint';
+import { OverallStatisticsCollectionEndpoint } from '@local/domain/statistics/overal-statistics/collection-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environment variables are not set');
@@ -35,19 +36,25 @@ const main = async (): Promise<express.Express> => {
   await dbConnection.connect();
 
   return new ExpressAppBuilder(logger)
-    .withClientRoute('api', VersionTag.v1, [
+    .withClientRoute(RoutePrefix.api, VersionTag.v1, [
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
     ])
-    .withClientRouteEndpoints('api', VersionTag.v1, {
+    .withClientRouteEndpoints(RoutePrefix.api, VersionTag.v1, {
       [CustomerCollectionEndpoint.PATH]: new CustomerCollectionEndpoint(),
       [ProductCollectionEndpoint.PATH]: new ProductCollectionEndpoint(),
       [TransactionCollectionEndpoint.PATH]: new TransactionCollectionEndpoint(),
       [GeographyUserCollectionEndpoint.PATH]: new GeographyUserCollectionEndpoint(),
     })
-    .withGeneralRoute('api', VersionTag.v1, [
+    .withSalesRoute(RoutePrefix.api, VersionTag.v1, [
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
     ])
-    .withGeneralRouteEndpoints('api', VersionTag.v1, {
+    .withSalesRouteEndpoints(RoutePrefix.api, VersionTag.v1, {
+      [OverallStatisticsCollectionEndpoint.PATH]: new OverallStatisticsCollectionEndpoint(),
+    })
+    .withGeneralRoute(RoutePrefix.api, VersionTag.v1, [
+      authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
+    ])
+    .withGeneralRouteEndpoints(RoutePrefix.api, VersionTag.v1, {
       [UserEndpoint.PATH]: new UserEndpoint(),
     })
     .build();
