@@ -10,6 +10,8 @@ import { dataProduct } from './data/product-demo-data';
 import { dataProductStatistics } from './data/product-statistics-demo-data';
 import { TransactionModel } from '@local/domain/transaction/database/model';
 import { dataTransaction } from './data/transaction-demo-data';
+import { OverallStatisticsModel } from '@local/domain/statistics/overal-statistics/database/model';
+import { dataOverallStatistics } from './data/overall-statistics-demo-data';
 
 const logger = getLogger('demo');
 const dbConnection = new MongoConnection(
@@ -45,6 +47,11 @@ const importDemoData = async () => {
   logger.info('Importing transactions...');
   await TransactionModel.insertMany(dataTransaction);
   logger.info(`Imported ${dataTransaction.length} transactions`);
+
+  // Overall Statistics
+  logger.info('Importing overall statistics...');
+  await OverallStatisticsModel.insertMany(dataOverallStatistics);
+  logger.info(`Imported ${dataOverallStatistics.length} overall statistics`);
 
   logger.info('All data imported');
 
