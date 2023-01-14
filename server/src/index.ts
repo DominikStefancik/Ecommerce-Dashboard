@@ -14,7 +14,7 @@ import { UserEndpoint } from '@local/domain/user/single-endpoint';
 import { ProductCollectionEndpoint } from '@local/domain/product/collection-endpoint';
 import { CustomerCollectionEndpoint } from '@local/domain/customer/collection-endpoint';
 import { TransactionCollectionEndpoint } from '@local/domain/transaction/collection-endpoint';
-import { GeographyCollectionEndpoint } from '@local/domain/geography/collection-endpoint';
+import { GeographyUserCollectionEndpoint } from '@local/domain/geography/user/collection-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environment variables are not set');
@@ -42,7 +42,7 @@ const main = async (): Promise<express.Express> => {
       [CustomerCollectionEndpoint.PATH]: new CustomerCollectionEndpoint(),
       [ProductCollectionEndpoint.PATH]: new ProductCollectionEndpoint(),
       [TransactionCollectionEndpoint.PATH]: new TransactionCollectionEndpoint(),
-      [GeographyCollectionEndpoint.PATH]: new GeographyCollectionEndpoint(),
+      [GeographyUserCollectionEndpoint.PATH]: new GeographyUserCollectionEndpoint(),
     })
     .withGeneralRoute('api', VersionTag.v1, [
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),

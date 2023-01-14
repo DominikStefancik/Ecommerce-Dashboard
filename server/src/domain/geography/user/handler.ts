@@ -6,9 +6,9 @@ import { HandlerResponse } from '@local/interfaces/networking/endpoint-handler';
 import { HttpResponseCode } from '@local/express/http/http-response-code';
 import { User } from '@local/domain/user/database/model';
 import { getCountryISO3 } from '@local/utils/country-codes';
-import { UsersPerCountry } from '@local/domain/geography/model/geography-user-statistics';
+import { UsersPerCountry } from '@local/domain/geography/user/models/user-statistics';
 
-export class GeographyHandler {
+export class GeographyUserHandler {
   public constructor(
     private readonly repositories: Pick<DatabaseRepositories, 'user'>,
     private readonly logger: Logger

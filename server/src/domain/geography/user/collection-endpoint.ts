@@ -5,10 +5,10 @@ import { Request } from '@local/interfaces/networking/request';
 import { AuthToken } from '@local/auth/auth-token';
 import { UserRepository } from '@local/domain/user/database/repository';
 import { Response } from '@local/interfaces/networking/response';
-import { GeographyHandler } from '@local/domain/geography/handler';
+import { GeographyUserHandler } from '@local/domain/geography/user/handler';
 
-export class GeographyCollectionEndpoint implements Endpoint {
-  public static readonly PATH = '/geography-stats';
+export class GeographyUserCollectionEndpoint implements Endpoint {
+  public static readonly PATH = '/geography/users';
 
   public async getHandler(
     request: Request,
@@ -20,7 +20,7 @@ export class GeographyCollectionEndpoint implements Endpoint {
     const repositories = {
       user: new UserRepository(logger),
     };
-    const handler = new GeographyHandler(repositories, logger);
+    const handler = new GeographyUserHandler(repositories, logger);
 
     return handler.handleGet();
   }
