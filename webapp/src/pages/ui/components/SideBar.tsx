@@ -49,7 +49,7 @@ const sections = [
   },
   { name: 'Geography (Users)', icon: <PublicOutlined />, path: Path.GEOGRAPHY_USERS },
   { name: 'Sales', icon: null },
-  { name: 'Overview', icon: <PointOfSaleOutlined />, path: Path.SALES_OVERVIEW },
+  { name: 'Overview', icon: <PointOfSaleOutlined />, path: Path.STATISTICS_OVERALL },
   {
     name: 'Daily',
     icon: <TodayOutlined />,

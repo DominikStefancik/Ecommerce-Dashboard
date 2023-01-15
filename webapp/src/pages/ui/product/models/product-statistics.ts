@@ -1,5 +1,5 @@
-import { MonthlyData } from './monthly-data';
-import { DailyData } from './daily-data';
+import { MonthlyData } from '@local/pages/models/monthly-data';
+import { DailyData } from '@local/pages/models/daily-data';
 
 export interface ProductStatistics {
   productId: string;

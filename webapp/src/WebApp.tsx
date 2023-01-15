@@ -11,6 +11,7 @@ import ProductListPage from '@local/pages/ui/product/ui/list';
 import TransactionListPage from '@local/pages/ui/transaction/list';
 import GeographyUsersPage from '@local/pages/ui/geography/ui/user';
 import CustomersListPage from '@local/pages/ui/customer/list';
+import OverallStatisticsPage from '@local/pages/ui/statistics/overall';
 
 const WebApp = () => {
   const themeMode = useSelector((state: any) => state.global.themeMode);
@@ -29,6 +30,7 @@ const WebApp = () => {
             <Route path={Path.CUSTOMERS} element={<CustomersListPage />} />
             <Route path={Path.TRANSACTIONS} element={<TransactionListPage />} />
             <Route path={Path.GEOGRAPHY_USERS} element={<GeographyUsersPage />} />
+            <Route path={Path.STATISTICS_OVERALL} element={<OverallStatisticsPage />} />
           </Route>
         </Routes>
       </ThemeProvider>
