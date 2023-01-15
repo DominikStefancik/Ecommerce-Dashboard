@@ -53,7 +53,7 @@ const sections = [
   {
     name: 'Daily',
     icon: <TodayOutlined />,
-    path: Path.SALES_DAILY,
+    path: Path.STATISTICS_DAILY,
   },
   { name: 'Monthly', icon: <CalendarMonthOutlined />, path: Path.SALES_MONTHLY },
   { name: 'Breakdown', icon: <PieChartOutlined />, path: Path.SALES_BREAKDOWN },

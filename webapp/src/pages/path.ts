@@ -6,7 +6,7 @@ export enum Path {
   TRANSACTIONS = '/transactions',
   GEOGRAPHY_USERS = '/geography-users',
   STATISTICS_OVERALL = '/statistics-overall',
-  SALES_DAILY = '/sales-daily',
+  STATISTICS_DAILY = '/statistics-daily',
   SALES_MONTHLY = '/sales-monthly',
   SALES_BREAKDOWN = '/sales-breakdown',
   ADMIN = '/admin',
