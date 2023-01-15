@@ -55,7 +55,7 @@ const sections = [
     icon: <TodayOutlined />,
     path: Path.STATISTICS_DAILY,
   },
-  { name: 'Monthly', icon: <CalendarMonthOutlined />, path: Path.SALES_MONTHLY },
+  { name: 'Monthly', icon: <CalendarMonthOutlined />, path: Path.STATISTICS_MONTHLY },
   { name: 'Breakdown', icon: <PieChartOutlined />, path: Path.SALES_BREAKDOWN },
   {
     name: 'Management',

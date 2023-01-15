@@ -7,7 +7,7 @@ export enum Path {
   GEOGRAPHY_USERS = '/geography-users',
   STATISTICS_OVERALL = '/statistics-overall',
   STATISTICS_DAILY = '/statistics-daily',
-  SALES_MONTHLY = '/sales-monthly',
+  STATISTICS_MONTHLY = '/statistics-monthly',
   SALES_BREAKDOWN = '/sales-breakdown',
   ADMIN = '/admin',
   PERFORMANCE = '/performance',

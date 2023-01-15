@@ -13,6 +13,7 @@ import GeographyUsersPage from '@local/pages/ui/geography/ui/user';
 import CustomersListPage from '@local/pages/ui/customer/list';
 import OverallStatisticsPage from '@local/pages/ui/statistics/overall';
 import DailyStatisticsPage from '@local/pages/ui/statistics/daily';
+import MonthlyStatisticsPage from '@local/pages/ui/statistics/monthly';
 
 const WebApp = () => {
   const themeMode = useSelector((state: any) => state.global.themeMode);
@@ -33,6 +34,7 @@ const WebApp = () => {
             <Route path={Path.GEOGRAPHY_USERS} element={<GeographyUsersPage />} />
             <Route path={Path.STATISTICS_OVERALL} element={<OverallStatisticsPage />} />
             <Route path={Path.STATISTICS_DAILY} element={<DailyStatisticsPage />} />
+            <Route path={Path.STATISTICS_MONTHLY} element={<MonthlyStatisticsPage />} />
           </Route>
         </Routes>
       </ThemeProvider>
