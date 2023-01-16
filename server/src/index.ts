@@ -16,6 +16,7 @@ import { CustomerCollectionEndpoint } from '@local/domain/customer/collection-en
 import { TransactionCollectionEndpoint } from '@local/domain/transaction/collection-endpoint';
 import { GeographyUserCollectionEndpoint } from '@local/domain/geography/user/collection-endpoint';
 import { OverallStatisticsCollectionEndpoint } from '@local/domain/statistics/overall-statistics/collection-endpoint';
+import { AdminCollectionEndpoint } from '@local/domain/admin/collection-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environment variables are not set');
@@ -36,6 +37,12 @@ const main = async (): Promise<express.Express> => {
   await dbConnection.connect();
 
   return new ExpressAppBuilder(logger)
+    .withManagementRoute(RoutePrefix.api, VersionTag.v1, [
+      authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
+    ])
+    .withManagementRouteEndpoints(RoutePrefix.api, VersionTag.v1, {
+      [AdminCollectionEndpoint.PATH]: new AdminCollectionEndpoint(),
+    })
     .withClientRoute(RoutePrefix.api, VersionTag.v1, [
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),
     ])
