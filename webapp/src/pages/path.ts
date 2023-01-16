@@ -8,7 +8,7 @@ export enum Path {
   STATISTICS_OVERALL = '/statistics-overall',
   STATISTICS_DAILY = '/statistics-daily',
   STATISTICS_MONTHLY = '/statistics-monthly',
-  SALES_BREAKDOWN = '/sales-breakdown',
+  STATISTICS_BREAKDOWN = '/statistics-breakdown',
   ADMIN = '/admin',
   PERFORMANCE = '/performance',
 }
