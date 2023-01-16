@@ -10,7 +10,7 @@ import { dataProduct } from './data/product-demo-data';
 import { dataProductStatistics } from './data/product-statistics-demo-data';
 import { TransactionModel } from '@local/domain/transaction/database/model';
 import { dataTransaction } from './data/transaction-demo-data';
-import { OverallStatisticsModel } from '@local/domain/statistics/overal-statistics/database/model';
+import { OverallStatisticsModel } from '@local/domain/statistics/overall-statistics/database/model';
 import { dataOverallStatistics } from './data/overall-statistics-demo-data';
 
 const logger = getLogger('demo');

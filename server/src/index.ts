@@ -15,7 +15,7 @@ import { ProductCollectionEndpoint } from '@local/domain/product/collection-endp
 import { CustomerCollectionEndpoint } from '@local/domain/customer/collection-endpoint';
 import { TransactionCollectionEndpoint } from '@local/domain/transaction/collection-endpoint';
 import { GeographyUserCollectionEndpoint } from '@local/domain/geography/user/collection-endpoint';
-import { OverallStatisticsCollectionEndpoint } from '@local/domain/statistics/overal-statistics/collection-endpoint';
+import { OverallStatisticsCollectionEndpoint } from '@local/domain/statistics/overall-statistics/collection-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environment variables are not set');

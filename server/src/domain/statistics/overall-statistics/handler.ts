@@ -1,9 +1,9 @@
 import { Logger } from 'pino';
 
 import { DatabaseRepositories } from '@local/interfaces/database/repositories';
-import { OverallStatisticsRepository } from '@local/domain/statistics/overal-statistics/database/repository';
+import { OverallStatisticsRepository } from '@local/domain/statistics/overall-statistics/database/repository';
 import { HandlerResponse } from '@local/interfaces/networking/endpoint-handler';
-import { OverallStatistics } from '@local/domain/statistics/overal-statistics/database/model';
+import { OverallStatistics } from '@local/domain/statistics/overall-statistics/database/model';
 import { HttpResponseCode } from '@local/express/http/http-response-code';
 
 export class OverallStatisticsHandler {

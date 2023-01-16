@@ -5,7 +5,7 @@ import { DocumentType } from '@typegoose/typegoose/lib/types';
 import {
   OverallStatistics,
   OverallStatisticsModel,
-} from '@local/domain/statistics/overal-statistics/database/model';
+} from '@local/domain/statistics/overall-statistics/database/model';
 
 export class OverallStatisticsRepository {
   private readonly model: Model<DocumentType<OverallStatistics>>;
