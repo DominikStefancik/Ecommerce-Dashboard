@@ -1,7 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { SERVER_BASE_URL } from '../../constants';
-import { USERS, PRODUCTS, CUSTOMERS, TRANSACTIONS, GEOGRAPHY, STATISTICS } from './endpoints';
+import {
+  USERS,
+  PRODUCTS,
+  CUSTOMERS,
+  TRANSACTIONS,
+  GEOGRAPHY,
+  STATISTICS,
+  ADMINS,
+} from './endpoints';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_BASE_URL }),
@@ -13,6 +21,7 @@ export const api = createApi({
     'Transactions',
     'GeographyUsers',
     'OverallStatistics',
+    'Admins',
   ],
   endpoints: (build) => ({
     // this creates a hook called 'useGetUserQuery' which we will be able to use to call the user endpoint
@@ -47,6 +56,10 @@ export const api = createApi({
       query: (_: void) => `${STATISTICS}/overall`,
       providesTags: ['OverallStatistics'],
     }),
+    getAdmins: build.query({
+      query: (_: void) => ADMINS,
+      providesTags: ['Admins'],
+    }),
   }),
 });
 
@@ -57,4 +70,5 @@ export const {
   useGetTransactionsQuery,
   useGetGeographyUsersQuery,
   useGetOverallStatisticsQuery,
+  useGetAdminsQuery,
 } = api;

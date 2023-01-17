@@ -2,12 +2,13 @@ import React from 'react';
 import { useTheme, Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { useGetCustomersQuery } from '@local/redux-store/api/api';
+import { useGetAdminsQuery } from '@local/redux-store/api/api';
+import DataGridCustomColumnMenu from '@local/pages/ui/admin/list/components/DataGridCustomColumnMenu';
 import { userColumns } from '@local/pages/models/data-grid-user-columns';
 
-const CustomerList = () => {
+const AdminList = () => {
   const theme = useTheme();
-  const { data, isLoading } = useGetCustomersQuery();
+  const { data, isLoading } = useGetAdminsQuery();
 
   return (
     <Box sx={{ margin: '1.5rem 2.5rem' }}>
@@ -41,6 +42,7 @@ const CustomerList = () => {
             rows={data}
             columns={userColumns}
             getRowId={(row) => row._id}
+            components={{ ColumnMenu: DataGridCustomColumnMenu }}
           />
         </Box>
       )}
@@ -48,4 +50,4 @@ const CustomerList = () => {
   );
 };
 
-export default CustomerList;
+export default AdminList;

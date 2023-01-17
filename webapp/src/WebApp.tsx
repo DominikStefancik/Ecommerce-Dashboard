@@ -15,6 +15,7 @@ import OverallStatisticsPage from '@local/pages/ui/statistics/overall';
 import DailyStatisticsPage from '@local/pages/ui/statistics/daily';
 import MonthlyStatisticsPage from '@local/pages/ui/statistics/monthly';
 import BreakdownStatisticsPage from '@local/pages/ui/statistics/breakdown';
+import AdminsListPage from '@local/pages/ui/admin/list';
 
 const WebApp = () => {
   const themeMode = useSelector((state: any) => state.global.themeMode);
@@ -37,6 +38,7 @@ const WebApp = () => {
             <Route path={Path.STATISTICS_DAILY} element={<DailyStatisticsPage />} />
             <Route path={Path.STATISTICS_MONTHLY} element={<MonthlyStatisticsPage />} />
             <Route path={Path.STATISTICS_BREAKDOWN} element={<BreakdownStatisticsPage />} />
+            <Route path={Path.ADMIN} element={<AdminsListPage />} />
           </Route>
         </Routes>
       </ThemeProvider>
