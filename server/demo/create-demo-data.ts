@@ -12,6 +12,8 @@ import { TransactionModel } from '@local/domain/transaction/database/model';
 import { dataTransaction } from './data/transaction-demo-data';
 import { OverallStatisticsModel } from '@local/domain/statistics/overall-statistics/database/model';
 import { dataOverallStatistics } from './data/overall-statistics-demo-data';
+import { PerformanceStatisticsModel } from '@local/domain/statistics/performance-statistics/database/model';
+import { dataPerformanceStatistics } from './data/performance-statistics-demo-data';
 
 const logger = getLogger('demo');
 const dbConnection = new MongoConnection(
@@ -52,6 +54,11 @@ const importDemoData = async () => {
   logger.info('Importing overall statistics...');
   await OverallStatisticsModel.insertMany(dataOverallStatistics);
   logger.info(`Imported ${dataOverallStatistics.length} overall statistics`);
+
+  // Performance Statistics
+  logger.info('Importing performance statistics...');
+  await PerformanceStatisticsModel.insertMany(dataPerformanceStatistics);
+  logger.info(`Imported ${dataPerformanceStatistics.length} performance statistics`);
 
   logger.info('All data imported');
 

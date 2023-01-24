@@ -1,4 +1,4 @@
-export const dataAffiliateStat = [
+export const dataPerformanceStatistics = [
   {
     _id: '6371251df03239e680000033',
     userId: '63701cc1f03239f09e00018a',
