@@ -17,7 +17,7 @@ import { TransactionCollectionEndpoint } from '@local/domain/transaction/collect
 import { GeographyUserCollectionEndpoint } from '@local/domain/geography/user/collection-endpoint';
 import { OverallStatisticsCollectionEndpoint } from '@local/domain/statistics/overall-statistics/collection-endpoint';
 import { AdminCollectionEndpoint } from '@local/domain/admin/collection-endpoint';
-import { PerformanceStatisticsEndpoint } from '@local/domain/statistics/performance-statistics/single-endpoint';
+import { UserPerformanceStatisticsEndpoint } from '@local/domain/statistics/performance-statistics/user/single-endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environment variables are not set');
@@ -43,7 +43,7 @@ const main = async (): Promise<express.Express> => {
     ])
     .withManagementRouteEndpoints(RoutePrefix.api, VersionTag.v1, {
       [AdminCollectionEndpoint.PATH]: new AdminCollectionEndpoint(),
-      [PerformanceStatisticsEndpoint.PATH]: new PerformanceStatisticsEndpoint(),
+      [UserPerformanceStatisticsEndpoint.PATH]: new UserPerformanceStatisticsEndpoint(),
     })
     .withClientRoute(RoutePrefix.api, VersionTag.v1, [
       authenticationMiddlewareFactory.getForApiKey(externalSystemVerifier),

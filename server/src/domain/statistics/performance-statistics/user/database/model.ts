@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
 import { modelOptions, prop, getModelForClass } from '@typegoose/typegoose';
 
-@modelOptions({ schemaOptions: { collection: 'performance-statistics', timestamps: true } })
-export class PerformanceStatistics {
+@modelOptions({ schemaOptions: { collection: 'user-performance-statistics', timestamps: true } })
+export class UserPerformanceStatistics {
   @prop({ required: true, ref: 'User' })
   public userId!: mongoose.Types.ObjectId;
 
@@ -10,4 +10,4 @@ export class PerformanceStatistics {
   public affiliateSales!: mongoose.Types.ObjectId[];
 }
 
-export const PerformanceStatisticsModel = getModelForClass(PerformanceStatistics);
+export const UserPerformanceStatisticsModel = getModelForClass(UserPerformanceStatistics);

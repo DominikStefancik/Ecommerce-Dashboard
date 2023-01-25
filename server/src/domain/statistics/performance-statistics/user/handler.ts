@@ -7,7 +7,7 @@ import { UserRepository } from '@local/domain/user/database/repository';
 import { Types, PipelineStage } from 'mongoose';
 import { User } from '@local/domain/user/database/model';
 
-export class PerformanceStatisticsHandler {
+export class UserPerformanceStatisticsHandler {
   public constructor(
     private readonly repositories: Pick<DatabaseRepositories, 'user'>,
     private readonly logger: Logger
@@ -40,7 +40,7 @@ export class PerformanceStatisticsHandler {
       {
         // we want to lookup in the 'performance-statistics' collection
         $lookup: {
-          from: 'performance-statistics',
+          from: 'user-performance-statistics',
           localField: '_id',
           foreignField: 'userId',
           // return the looked up information as
