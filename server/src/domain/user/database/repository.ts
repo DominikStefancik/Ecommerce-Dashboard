@@ -1,5 +1,5 @@
 import { Logger } from 'pino';
-import { ProjectionFields, Model } from 'mongoose';
+import { ProjectionFields, Model, PipelineStage, Aggregate } from 'mongoose';
 
 import { User, UserModel } from '@local/domain/user/database/model';
 import { DocumentType } from '@typegoose/typegoose/lib/types';
@@ -30,6 +30,14 @@ export class UserRepository {
     const users = await this.model.find(filter, projection);
 
     return users;
+  }
+
+  public async getAggregate(stages: PipelineStage[]): Promise<Aggregate<Array<User>>> {
+    this.logger.info({ stages }, 'Fetching user aggregate with the stages from the database');
+
+    const userAggregate = this.model.aggregate(stages);
+
+    return userAggregate;
   }
 
   public async getAllUsers(): Promise<User[]> {

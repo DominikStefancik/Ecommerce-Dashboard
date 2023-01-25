@@ -22,7 +22,7 @@ export class OverallStatisticsRepository {
     return statistics;
   }
 
-  public async getOveralStatistics(filter: any): Promise<OverallStatistics[]> {
+  public async getOverallStatistics(filter: any): Promise<OverallStatistics[]> {
     this.logger.info({ filter }, 'Fetching overall statistics from the database');
 
     const statistics = await this.model.find(filter);

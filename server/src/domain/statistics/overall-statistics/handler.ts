@@ -19,7 +19,7 @@ export class OverallStatisticsHandler {
   public async handleGet(): Promise<HandlerResponse<{ overallStatistics: OverallStatistics[] }>> {
     this.logger.info('Handling GET request...');
 
-    const statistics = await this.overallStatisticsRepository.getOveralStatistics({});
+    const statistics = await this.overallStatisticsRepository.getOverallStatistics({});
 
     return { code: HttpResponseCode.OK, payload: { overallStatistics: statistics } };
   }
