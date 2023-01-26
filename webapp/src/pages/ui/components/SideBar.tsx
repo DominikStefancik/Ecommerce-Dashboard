@@ -62,7 +62,7 @@ const sections = [
     icon: null,
   },
   { name: 'Admin', icon: <AdminPanelSettingsOutlined />, path: Path.ADMIN },
-  { name: 'Performance', icon: <TrendingUpOutlined />, path: Path.PERFORMANCE },
+  { name: 'User Performance', icon: <TrendingUpOutlined />, path: Path.USER_PERFORMANCE },
 ];
 
 interface SideBarProps {

@@ -6,6 +6,7 @@ import { AuthToken } from '@local/auth/auth-token';
 import { Response } from '@local/interfaces/networking/response';
 import { UserPerformanceStatisticsHandler } from '@local/domain/statistics/performance-statistics/user/handler';
 import { UserRepository } from '@local/domain/user/database/repository';
+import { TransactionRepository } from '@local/domain/transaction/database/repository';
 
 export class UserPerformanceStatisticsEndpoint implements Endpoint {
   public static readonly PATH = '/statistics/performance/users/:userId';
@@ -19,6 +20,7 @@ export class UserPerformanceStatisticsEndpoint implements Endpoint {
 
     const repositories = {
       user: new UserRepository(logger),
+      transaction: new TransactionRepository(logger),
     };
     const handler = new UserPerformanceStatisticsHandler(repositories, logger);
     const userId = request.urlParameters['userId'];

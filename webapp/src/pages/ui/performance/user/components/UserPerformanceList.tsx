@@ -1,14 +1,39 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useTheme, Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { useGetAdminsQuery } from '@local/redux-store/api/api';
+import { useGetUserPerformanceQuery } from '@local/redux-store/api/api';
 import DataGridCustomColumnMenu from '@local/pages/ui/components/DataGridCustomColumnMenu';
-import { userColumns } from '@local/pages/models/data-grid-user-columns';
 
-const AdminList = () => {
+const userPerformanceColumns = [
+  // property 'flex' says how we want each column to grow, shrink and how much space it can take up
+  { field: '_id', headerName: 'ID', flex: 1 },
+  { field: 'userId', headerName: 'User ID', flex: 1 },
+  {
+    field: 'createdAt',
+    headerName: 'Created At',
+    flex: 1,
+  },
+  {
+    field: 'products',
+    headerName: 'Product Count',
+    flex: 0.5,
+    sortable: false,
+    renderCell: (parameters: any) => parameters.value.length,
+  },
+  {
+    field: 'cost',
+    headerName: 'Cost',
+    flex: 1,
+    renderCell: (parameters: any) => `$${Number(parameters.value).toFixed(2)}`,
+  },
+];
+
+const UserPerformanceList = () => {
   const theme = useTheme();
-  const { data, isLoading } = useGetAdminsQuery();
+  const userId = useSelector((state: any) => state.global.userId);
+  const { data, isLoading } = useGetUserPerformanceQuery(userId);
 
   return (
     <Box sx={{ margin: '1.5rem 2.5rem' }}>
@@ -39,8 +64,8 @@ const AdminList = () => {
         >
           <DataGrid
             loading={isLoading}
-            rows={data}
-            columns={userColumns}
+            rows={data.userWithStatistics.performanceStatistics.affiliateSales}
+            columns={userPerformanceColumns}
             getRowId={(row) => row._id}
             components={{ ColumnMenu: DataGridCustomColumnMenu }}
           />
@@ -50,4 +75,4 @@ const AdminList = () => {
   );
 };
 
-export default AdminList;
+export default UserPerformanceList;

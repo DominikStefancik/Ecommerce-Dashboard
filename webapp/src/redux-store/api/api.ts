@@ -9,6 +9,7 @@ import {
   GEOGRAPHY,
   STATISTICS,
   ADMINS,
+  USERS_PERFORMANCE,
 } from './endpoints';
 
 export const api = createApi({
@@ -22,6 +23,7 @@ export const api = createApi({
     'GeographyUsers',
     'OverallStatistics',
     'Admins',
+    'UserPerformance',
   ],
   endpoints: (build) => ({
     // this creates a hook called 'useGetUserQuery' which we will be able to use to call the user endpoint
@@ -60,6 +62,10 @@ export const api = createApi({
       query: (_: void) => ADMINS,
       providesTags: ['Admins'],
     }),
+    getUserPerformance: build.query({
+      query: (userId) => `${USERS_PERFORMANCE}/${userId}`,
+      providesTags: ['UserPerformance'],
+    }),
   }),
 });
 
@@ -71,4 +77,5 @@ export const {
   useGetGeographyUsersQuery,
   useGetOverallStatisticsQuery,
   useGetAdminsQuery,
+  useGetUserPerformanceQuery,
 } = api;

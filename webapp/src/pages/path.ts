@@ -10,5 +10,5 @@ export enum Path {
   STATISTICS_MONTHLY = '/statistics-monthly',
   STATISTICS_BREAKDOWN = '/statistics-breakdown',
   ADMIN = '/admin',
-  PERFORMANCE = '/performance',
+  USER_PERFORMANCE = '/user-performance',
 }
