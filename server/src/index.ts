@@ -18,6 +18,7 @@ import { GeographyUserCollectionEndpoint } from '@local/domain/geography/user/co
 import { OverallStatisticsCollectionEndpoint } from '@local/domain/statistics/overall-statistics/collection-endpoint';
 import { AdminCollectionEndpoint } from '@local/domain/admin/collection-endpoint';
 import { UserPerformanceStatisticsEndpoint } from '@local/domain/statistics/performance-statistics/user/single-endpoint';
+import { DashboardStatisticsEndpoint } from '@local/domain/statistics/dashboard-statistics/endpoint';
 
 if (!MODULE_NAME || !PORT || !DATABASE_URL || !DATABASE_NAME) {
   throw new Error('Required environment variables are not set');
@@ -65,6 +66,7 @@ const main = async (): Promise<express.Express> => {
     ])
     .withGeneralRouteEndpoints(RoutePrefix.api, VersionTag.v1, {
       [UserEndpoint.PATH]: new UserEndpoint(),
+      [DashboardStatisticsEndpoint.PATH]: new DashboardStatisticsEndpoint(),
     })
     .build();
 };

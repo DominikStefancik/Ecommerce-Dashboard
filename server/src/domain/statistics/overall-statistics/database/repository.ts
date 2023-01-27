@@ -14,10 +14,10 @@ export class OverallStatisticsRepository {
     this.model = OverallStatisticsModel;
   }
 
-  public async getSingleOverallStatistics(productId: string): Promise<OverallStatistics | null> {
-    this.logger.info({ productId }, 'Fetching a single overall statistics from the database');
+  public async getSingleOverallStatistics(filter: any): Promise<OverallStatistics | null> {
+    this.logger.info({ filter }, 'Fetching a single overall statistics from the database');
 
-    const statistics = await this.model.findOne({ productId });
+    const statistics = await this.model.findOne(filter);
 
     return statistics;
   }
