@@ -23,7 +23,7 @@ import {
 
 import { FlexBoxInBetween } from './styled';
 import { setTheme } from '@local/redux-store/index';
-import { ThemeMode } from '@local/pages/theme';
+import { ThemeMode } from '@local/pages/theme/theme';
 import { User } from '@local/pages/models/user';
 
 interface NavigationBarProps {

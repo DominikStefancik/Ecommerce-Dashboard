@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
 
-import { themeSettings } from '@local/pages/theme';
+import { themeSettings } from '@local/pages/theme/theme';
 import Layout from '@local/pages/ui/components/Layout';
 import { Path } from '@local/pages/path';
 import DashboardPage from '@local/pages/ui/dashboard';

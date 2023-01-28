@@ -1,3 +1,5 @@
+export const DASHBOARD_STATISTICS = 'general/api/v1/dashboard-statistics';
+
 export const USERS = 'general/api/v1/users';
 
 export const PRODUCTS = 'client/api/v1/products';

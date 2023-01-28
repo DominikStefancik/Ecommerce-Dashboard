@@ -67,7 +67,7 @@ const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatistics
          * even though the height property is set in the Box element in a page component
          * where the OverallStatisticsChart is used
          **/
-        <Box sx={{ height: '75vh' }}>
+        <Box sx={{ height: isDashboard ? '33vh' : '75vh' }}>
           <ResponsiveLine
             data={view === StatisticsView.sales ? totalSalesPriceLine : totalSoldUnitsLine}
             curve="catmullRom"
@@ -113,6 +113,7 @@ const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatistics
               legendPosition: 'middle',
             }}
             axisLeft={{
+              tickValues: 5,
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
@@ -124,6 +125,7 @@ const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatistics
             }}
             enableGridX={false}
             enableGridY={false}
+            enableArea={isDashboard}
             pointSize={10}
             pointColor={{ theme: 'background' }}
             pointBorderWidth={2}

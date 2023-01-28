@@ -4,30 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import { useGetTransactionsQuery } from '@local/redux-store/api/api';
 import DataGridCustomToolbar from '@local/pages/ui/transaction/list/components/DataGridCustomToolbar';
-
-const columns = [
-  // property 'flex' says how we want each column to grow, shrink and how much space it can take up
-  { field: '_id', headerName: 'ID', flex: 1 },
-  { field: 'userId', headerName: 'User ID', flex: 1 },
-  {
-    field: 'createdAt',
-    headerName: 'CreatedAt',
-    flex: 1,
-  },
-  {
-    field: 'products',
-    headerName: 'Number of Products',
-    flex: 0.5,
-    sortable: false,
-    renderCell: (parameters: any) => parameters.value.length,
-  },
-  {
-    field: 'cost',
-    headerName: 'Cost',
-    flex: 1,
-    renderCell: (parameters: any) => `$${parameters.value.toFixed(2)}`,
-  },
-];
+import { transactionColumns } from '@local/pages/models/data-grid-transaction-columns';
+import { getTransactionListTheme } from '@local/pages/theme/transaction-list-theme';
 
 const TransactionList = () => {
   const theme = useTheme();
@@ -53,25 +31,8 @@ const TransactionList = () => {
     <Box sx={{ margin: '1.5rem 2.5rem' }}>
       <Box
         sx={{
-          'height': '80vh',
-          '& .MuiDataGrid-root': { border: 'none' },
-          '& .MuiDataGrid-cell': { borderBottom: 'none' },
-          '& .MuiDataGrid-columnHeaders': {
-            backgroundColor: theme.palette.background.default,
-            color: theme.palette.secondary.main,
-            borderBottom: 'none',
-          },
-          '& .MuiDataGrid-virtualScroller': {
-            backgroundColor: theme.palette.primary.light,
-          },
-          '& .MuiDataGrid-footerContainer': {
-            backgroundColor: theme.palette.background.default,
-            color: theme.palette.secondary.main,
-            borderTop: 'none',
-          },
-          '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
-            color: `${theme.palette.secondary.main} !important`,
-          },
+          height: '80vh',
+          ...getTransactionListTheme(theme),
         }}
       >
         <DataGrid
@@ -80,7 +41,7 @@ const TransactionList = () => {
           rows={(data && data.transactions) ?? []}
           rowCount={(data && data.totalCount) ?? 0}
           rowsPerPageOptions={[20, 50, 100]}
-          columns={columns}
+          columns={transactionColumns}
           pagination
           page={page}
           pageSize={pageSize}

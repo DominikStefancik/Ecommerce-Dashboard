@@ -44,7 +44,7 @@ const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsCh
          * even though the height property is set in the Box element in a page component
          * where the BreakdownStatisticsChart is used
          **/
-        <Box sx={{ height: '75vh' }}>
+        <Box sx={{ height: isDashboard ? '45vh' : '75vh' }}>
           <ResponsivePie
             data={pieChartData}
             theme={{

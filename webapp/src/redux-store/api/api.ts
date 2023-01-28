@@ -10,6 +10,7 @@ import {
   STATISTICS,
   ADMINS,
   USERS_PERFORMANCE,
+  DASHBOARD_STATISTICS,
 } from './endpoints';
 
 export const api = createApi({
@@ -24,6 +25,7 @@ export const api = createApi({
     'OverallStatistics',
     'Admins',
     'UserPerformance',
+    'DashboardStatistics',
   ],
   endpoints: (build) => ({
     // this creates a hook called 'useGetUserQuery' which we will be able to use to call the user endpoint
@@ -66,6 +68,16 @@ export const api = createApi({
       query: (userId) => `${USERS_PERFORMANCE}/${userId}`,
       providesTags: ['UserPerformance'],
     }),
+    getDashboardStatistics: build.query({
+      query: (year) => {
+        return {
+          url: DASHBOARD_STATISTICS,
+          method: 'GET',
+          params: { year },
+        };
+      },
+      providesTags: ['DashboardStatistics'],
+    }),
   }),
 });
 
@@ -78,4 +90,5 @@ export const {
   useGetOverallStatisticsQuery,
   useGetAdminsQuery,
   useGetUserPerformanceQuery,
+  useGetDashboardStatisticsQuery,
 } = api;
