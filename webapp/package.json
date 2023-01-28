@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start:dev": "yarn run dev",
+    "start:prod": "yarn run rebuild && vite",
     "dev": "PORT=3001 vite",
     "rebuild": "tsc && vite build",
     "preview": "vite preview",

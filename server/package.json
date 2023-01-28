@@ -12,8 +12,10 @@
     "MongoDB"
   ],
   "scripts": {
-    "start": "yarn run build && yarn run dev",
+    "start:dev": "yarn run build && yarn run dev",
+    "start:prod": "yarn run build && yarn run prod",
     "dev": "MODULE_NAME=$npm_package_name PORT=3000 ts-node-dev --respawn --transpile-only src/index.ts | pino-pretty",
+    "prod": "MODULE_NAME=$npm_package_name node dist/src/index.js | pino-pretty",
     "build": "yarn run lint && yarn run compile",
     "rebuild": "yarn run clean && yarn run build",
     "lint": "eslint . --ext .ts",
