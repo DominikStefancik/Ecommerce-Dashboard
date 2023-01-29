@@ -25,6 +25,7 @@ import { setTheme } from '@local/redux-store/index';
 import { ThemeMode } from '@local/pages/theme/theme';
 import { User } from '@local/pages/models/user';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import profileImage from '@local/static/profile.jpeg';
 
 interface NavigationBarProps {
   toggleSideBar: () => void;
@@ -89,7 +90,7 @@ const NavigationBar = ({ toggleSideBar, user }: NavigationBarProps) => {
               >
                 <Box
                   component="img"
-                  src=""
+                  src={profileImage}
                   sx={{ height: '32px', width: '32px', borderRadius: '50%', objectFit: 'cover' }}
                 />
                 <Box sx={{ textAlign: 'left' }}>

@@ -23,6 +23,7 @@ export default defineConfig(({ command, mode }) => {
         '@local/root': path.join(__dirname, 'src'),
         '@local/pages': path.join(__dirname, 'src', 'pages'),
         '@local/redux-store': path.join(__dirname, 'src', 'redux-store'),
+        '@local/static': path.join(__dirname, 'src', 'static'),
       },
     },
   };

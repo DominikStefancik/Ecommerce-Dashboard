@@ -33,6 +33,7 @@ import { FlexBoxInBetween } from './styled';
 import { Path } from '@local/pages/path';
 import { User } from '@local/pages/models/user';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import profileImage from '@local/static/profile.jpeg';
 
 const sections = [
   { name: 'Dashboard', icon: <HomeOutlined />, path: Path.DASHBOARD },
@@ -174,7 +175,7 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
               >
                 <Box
                   component="img"
-                  src=""
+                  src={profileImage}
                   sx={{ height: '40px', width: '40px', borderRadius: '50%', objectFit: 'cover' }}
                 />
                 <Box sx={{ textAlign: 'left' }}>
