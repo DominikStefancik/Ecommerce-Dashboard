@@ -6,6 +6,7 @@ import { useGetOverallStatisticsQuery } from '@local/redux-store/api/api';
 import { LineChartCoordinates } from '@local/pages/ui/components/models/line-charts-coordinates';
 import { MonthlyData } from '@local/pages/models/monthly-data';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import { getStatisticsTheme } from '@local/pages/theme/statistics-theme';
 
 const MonthlyStatisticsChart = () => {
   const theme = useCustomTheme();
@@ -47,20 +48,7 @@ const MonthlyStatisticsChart = () => {
         <ResponsiveLine
           data={monthlyStatisticsData}
           curve="catmullRom"
-          theme={{
-            axis: {
-              domain: {
-                line: { stroke: theme.palette.secondary[200] },
-              },
-              legend: { text: { fill: theme.palette.secondary[200] } },
-              ticks: {
-                line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
-                text: { fill: theme.palette.secondary[200] },
-              },
-            },
-            legends: { text: { fill: theme.palette.secondary[200] } },
-            tooltip: { container: { color: theme.palette.primary.main } },
-          }}
+          theme={getStatisticsTheme(theme)}
           animate={true}
           colors={{ datum: 'color' }}
           margin={{ top: 50, right: 50, bottom: 70, left: 60 }}

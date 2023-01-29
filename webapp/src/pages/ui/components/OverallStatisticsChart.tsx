@@ -6,6 +6,7 @@ import { StatisticsView } from '@local/pages/ui/components/models/statistics-vie
 import { useGetOverallStatisticsQuery } from '@local/redux-store/api/api';
 import { MonthlyData } from '@local/pages/models/monthly-data';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import { getStatisticsTheme } from '@local/pages/theme/statistics-theme';
 
 interface OverallStatisticsChartProps {
   view: StatisticsView;
@@ -72,20 +73,7 @@ const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatistics
           <ResponsiveLine
             data={view === StatisticsView.sales ? totalSalesPriceLine : totalSoldUnitsLine}
             curve="catmullRom"
-            theme={{
-              axis: {
-                domain: {
-                  line: { stroke: theme.palette.secondary[200] },
-                },
-                legend: { text: { fill: theme.palette.secondary[200] } },
-                ticks: {
-                  line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
-                  text: { fill: theme.palette.secondary[200] },
-                },
-              },
-              legends: { text: { fill: theme.palette.secondary[200] } },
-              tooltip: { container: { color: theme.palette.primary.main } },
-            }}
+            theme={getStatisticsTheme(theme)}
             animate={true}
             margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
             xScale={{ type: 'point' }}

@@ -1,6 +1,6 @@
 import { CustomTheme } from '@local/pages/theme/theme';
 
-export const getTransactionListTheme = (theme: CustomTheme) => ({
+export const getTableListTheme = (theme: CustomTheme) => ({
   '& .MuiDataGrid-root': { border: 'none' },
   '& .MuiDataGrid-cell': { borderBottom: 'none' },
   '& .MuiDataGrid-columnHeaders': {

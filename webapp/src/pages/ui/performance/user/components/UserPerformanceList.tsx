@@ -6,6 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useGetUserPerformanceQuery } from '@local/redux-store/api/api';
 import DataGridCustomColumnMenu from '@local/pages/ui/components/DataGridCustomColumnMenu';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import { getTableListTheme } from '@local/pages/theme/table-list-theme';
 
 const userPerformanceColumns = [
   // property 'flex' says how we want each column to grow, shrink and how much space it can take up
@@ -41,26 +42,9 @@ const UserPerformanceList = () => {
       {data && (
         <Box
           sx={{
-            'marginTop': '40px',
-            'height': '75vh',
-            '& .MuiDataGrid-root': { border: 'none' },
-            '& .MuiDataGrid-cell': { borderBottom: 'none' },
-            '& .MuiDataGrid-columnHeaders': {
-              backgroundColor: theme.palette.background.alt,
-              color: theme.palette.secondary[100],
-              borderBottom: 'none',
-            },
-            '& .MuiDataGrid-virtualScroller': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            '& .MuiDataGrid-footerContainer': {
-              backgroundColor: theme.palette.background.alt,
-              color: theme.palette.secondary[100],
-              borderTop: 'none',
-            },
-            '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
-              color: `${theme.palette.secondary[200]} !important`,
-            },
+            marginTop: '40px',
+            height: '75vh',
+            ...getTableListTheme(theme),
           }}
         >
           <DataGrid

@@ -9,6 +9,7 @@ import { useGetOverallStatisticsQuery } from '@local/redux-store/api/api';
 import { DailyData } from '@local/pages/models/daily-data';
 import { LineChartCoordinates } from '@local/pages/ui/components/models/line-charts-coordinates';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import { getStatisticsTheme } from '@local/pages/theme/statistics-theme';
 
 const DailyStatisticsChart = () => {
   const theme = useCustomTheme();
@@ -89,20 +90,7 @@ const DailyStatisticsChart = () => {
         <ResponsiveLine
           data={dailyStatisticsData}
           curve="catmullRom"
-          theme={{
-            axis: {
-              domain: {
-                line: { stroke: theme.palette.secondary[200] },
-              },
-              legend: { text: { fill: theme.palette.secondary[200] } },
-              ticks: {
-                line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
-                text: { fill: theme.palette.secondary[200] },
-              },
-            },
-            legends: { text: { fill: theme.palette.secondary[200] } },
-            tooltip: { container: { color: theme.palette.primary.main } },
-          }}
+          theme={getStatisticsTheme(theme)}
           animate={true}
           colors={{ datum: 'color' }}
           margin={{ top: 50, right: 50, bottom: 70, left: 60 }}

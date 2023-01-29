@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { getTransactionListTheme } from '@local/pages/theme/transaction-list-theme';
+import { getTableListTheme } from '@local/pages/theme/table-list-theme';
 import { Transaction } from '@local/pages/models/transaction';
 import { transactionColumns } from '@local/pages/models/data-grid-transaction-columns';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
@@ -21,7 +21,7 @@ const DashboardTransactionStatisticsList = ({
       sx={{
         gridColumn: 'span 8',
         gridRow: 'span 3',
-        ...getTransactionListTheme(theme),
+        ...getTableListTheme(theme),
       }}
     >
       <DataGrid

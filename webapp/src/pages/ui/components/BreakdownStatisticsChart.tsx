@@ -4,6 +4,7 @@ import { ResponsivePie } from '@nivo/pie';
 
 import { useGetOverallStatisticsQuery } from '@local/redux-store/api/api';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
+import { getStatisticsTheme } from '@local/pages/theme/statistics-theme';
 
 interface BreakdownStatisticsChartProps {
   isDashboard?: boolean;
@@ -48,20 +49,7 @@ const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsCh
         <Box sx={{ height: isDashboard ? '45vh' : '75vh' }}>
           <ResponsivePie
             data={pieChartData}
-            theme={{
-              axis: {
-                domain: {
-                  line: { stroke: theme.palette.secondary[200] },
-                },
-                legend: { text: { fill: theme.palette.secondary[200] } },
-                ticks: {
-                  line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
-                  text: { fill: theme.palette.secondary[200] },
-                },
-              },
-              legends: { text: { fill: theme.palette.secondary[200] } },
-              tooltip: { container: { color: theme.palette.primary.main } },
-            }}
+            theme={getStatisticsTheme(theme)}
             colors={{ datum: 'data.color' }}
             margin={
               isDashboard

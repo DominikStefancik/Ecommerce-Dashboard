@@ -5,7 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useGetTransactionsQuery } from '@local/redux-store/api/api';
 import DataGridCustomToolbar from '@local/pages/ui/transaction/list/components/DataGridCustomToolbar';
 import { transactionColumns } from '@local/pages/models/data-grid-transaction-columns';
-import { getTransactionListTheme } from '@local/pages/theme/transaction-list-theme';
+import { getTableListTheme } from '@local/pages/theme/table-list-theme';
 import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 const TransactionList = () => {
@@ -33,7 +33,7 @@ const TransactionList = () => {
       <Box
         sx={{
           height: '80vh',
-          ...getTransactionListTheme(theme),
+          ...getTableListTheme(theme),
         }}
       >
         <DataGrid
