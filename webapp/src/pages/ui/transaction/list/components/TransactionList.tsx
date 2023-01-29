@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useTheme, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import { useGetTransactionsQuery } from '@local/redux-store/api/api';
 import DataGridCustomToolbar from '@local/pages/ui/transaction/list/components/DataGridCustomToolbar';
 import { transactionColumns } from '@local/pages/models/data-grid-transaction-columns';
 import { getTransactionListTheme } from '@local/pages/theme/transaction-list-theme';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 const TransactionList = () => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
 
   // values which will be sent to the backend
   const [page, setPage] = useState(0);

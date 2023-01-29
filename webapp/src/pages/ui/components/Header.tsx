@@ -1,5 +1,7 @@
 import React from 'react';
-import { useTheme, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 interface HeaderProps {
   title: string;
@@ -7,17 +9,17 @@ interface HeaderProps {
 }
 
 const Header = ({ title, subtitle }: HeaderProps) => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
 
   return (
     <Box>
       <Typography
         variant="h2"
-        sx={{ color: theme.palette.secondary.main, fontWeight: 'bold', marginBottom: '5px' }}
+        sx={{ color: theme.palette.secondary[100], fontWeight: 'bold', marginBottom: '5px' }}
       >
         {title}
       </Typography>
-      <Typography variant="h5" sx={{ color: theme.palette.secondary.main }}>
+      <Typography variant="h5" sx={{ color: theme.palette.secondary[300] }}>
         {subtitle}
       </Typography>
     </Box>

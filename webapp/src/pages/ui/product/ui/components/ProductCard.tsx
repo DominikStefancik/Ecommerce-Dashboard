@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  useTheme,
   Card,
   CardContent,
   Typography,
@@ -11,32 +10,33 @@ import {
 } from '@mui/material';
 
 import { Product as ProductModel } from '@local/pages/ui/product/models/product';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 interface ProductCardProps {
   product: ProductModel;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <Card
       sx={{
         backgroundImage: 'none',
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.alt,
         borderRadius: '0.55rem',
       }}
     >
       <CardContent>
-        <Typography sx={{ fontSize: 14, color: theme.palette.secondary.main }} gutterBottom>
+        <Typography sx={{ fontSize: 14, color: theme.palette.secondary[700] }} gutterBottom>
           {product.category}
         </Typography>
         <Typography variant="h5" component="div">
           {product.name}
         </Typography>
         <Typography
-          sx={{ marginBottom: '1.5rem', color: theme.palette.secondary.main }}
+          sx={{ marginBottom: '1.5rem', color: theme.palette.secondary[400] }}
           gutterBottom
         >
           ${product.price.toFixed(2)}
@@ -53,7 +53,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         in={isExpanded}
         timeout="auto"
         unmountOnExit
-        sx={{ color: theme.palette.common.white }}
+        sx={{ color: theme.palette.neutral[300] }}
       >
         <CardContent>
           <Typography>

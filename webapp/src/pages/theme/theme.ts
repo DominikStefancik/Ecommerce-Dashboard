@@ -1,5 +1,28 @@
-type Palette = { [shade: number]: string };
-type TokenTheme = { [key: string]: Palette };
+import { PaletteColor, Palette } from '@mui/material';
+import { Theme } from '@emotion/react';
+import { TypeBackground } from '@mui/material/styles/createPalette';
+
+interface EnrichedPaletteColor extends PaletteColor {
+  [shade: number]: string;
+}
+
+interface EnrichedTypeBackground extends TypeBackground {
+  alt: string;
+}
+
+interface EnrichedPalette extends Palette {
+  primary: EnrichedPaletteColor;
+  secondary: EnrichedPaletteColor;
+  neutral: EnrichedPaletteColor;
+  background: EnrichedTypeBackground;
+}
+
+export interface CustomTheme extends Theme {
+  palette: EnrichedPalette;
+}
+
+type TokenPalette = { [shade: number]: string };
+type TokenTheme = { [key: string]: TokenPalette };
 
 export enum ThemeMode {
   dark = 'dark',
@@ -58,7 +81,7 @@ const reverseTokens = (tokensTheme: TokenTheme): TokenTheme => {
     const keys = Object.keys(value) as unknown as number[];
     const values = Object.values(value);
     const length = keys.length;
-    const reversedObject = {} as Palette;
+    const reversedObject = {} as TokenPalette;
     for (let index = 0; index < length; index++) {
       reversedObject[keys[index]] = values[length - index - 1];
     }

@@ -1,21 +1,22 @@
 import React from 'react';
-import { useTheme, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ResponsivePie } from '@nivo/pie';
 
 import { useGetOverallStatisticsQuery } from '@local/redux-store/api/api';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 interface BreakdownStatisticsChartProps {
   isDashboard?: boolean;
 }
 
 const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsChartProps) => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
   const { data, isLoading } = useGetOverallStatisticsQuery();
   const colors = [
-    theme.palette.secondary.main,
-    theme.palette.secondary.dark,
-    theme.palette.secondary.dark,
-    theme.palette.secondary.main,
+    theme.palette.secondary[500],
+    theme.palette.secondary[300],
+    theme.palette.secondary[300],
+    theme.palette.secondary[500],
   ];
 
   const pieChartData = Object.entries(
@@ -50,15 +51,15 @@ const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsCh
             theme={{
               axis: {
                 domain: {
-                  line: { stroke: theme.palette.secondary.main },
+                  line: { stroke: theme.palette.secondary[200] },
                 },
-                legend: { text: { fill: theme.palette.secondary.main } },
+                legend: { text: { fill: theme.palette.secondary[200] } },
                 ticks: {
-                  line: { stroke: theme.palette.secondary.main, strokeWidth: 1 },
-                  text: { fill: theme.palette.secondary.main },
+                  line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
+                  text: { fill: theme.palette.secondary[200] },
                 },
               },
-              legends: { text: { fill: theme.palette.secondary.main } },
+              legends: { text: { fill: theme.palette.secondary[200] } },
               tooltip: { container: { color: theme.palette.primary.main } },
             }}
             colors={{ datum: 'data.color' }}
@@ -81,7 +82,7 @@ const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsCh
               modifiers: [['darker', 0.2]],
             }}
             enableArcLinkLabels={!isDashboard}
-            arcLinkLabelsTextColor={theme.palette.secondary.main}
+            arcLinkLabelsTextColor={theme.palette.secondary[200]}
             arcLinkLabelsThickness={2}
             arcLinkLabelsColor={{ from: 'color' }}
             arcLabelsSkipAngle={10}
@@ -108,7 +109,7 @@ const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsCh
                   {
                     on: 'hover',
                     style: {
-                      itemTextColor: theme.palette.primary.main,
+                      itemTextColor: theme.palette.primary[500],
                     },
                   },
                 ],
@@ -120,7 +121,7 @@ const BreakdownStatisticsChart = ({ isDashboard = false }: BreakdownStatisticsCh
               position: 'absolute',
               top: '50%',
               left: '50%',
-              color: theme.palette.secondary.dark,
+              color: theme.palette.secondary[400],
               textAlign: 'center',
               pointerEvents: 'none',
               transform: isDashboard ? 'translate(-75%, -170%)' : 'translate(-50%, -100%)',

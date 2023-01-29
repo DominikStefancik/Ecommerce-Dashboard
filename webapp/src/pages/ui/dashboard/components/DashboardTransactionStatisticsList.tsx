@@ -1,10 +1,11 @@
 import React from 'react';
-import { useTheme, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import { getTransactionListTheme } from '@local/pages/theme/transaction-list-theme';
 import { Transaction } from '@local/pages/models/transaction';
 import { transactionColumns } from '@local/pages/models/data-grid-transaction-columns';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 interface DashboardTransactionStatisticsListProps {
   transactions: Transaction[];
@@ -13,7 +14,7 @@ interface DashboardTransactionStatisticsListProps {
 const DashboardTransactionStatisticsList = ({
   transactions,
 }: DashboardTransactionStatisticsListProps) => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
 
   return (
     <Box

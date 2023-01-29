@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  useTheme,
   AppBar,
   Toolbar,
   IconButton,
@@ -25,6 +24,7 @@ import { FlexBoxInBetween } from './styled';
 import { setTheme } from '@local/redux-store/index';
 import { ThemeMode } from '@local/pages/theme/theme';
 import { User } from '@local/pages/models/user';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 interface NavigationBarProps {
   toggleSideBar: () => void;
@@ -33,7 +33,7 @@ interface NavigationBarProps {
 
 const NavigationBar = ({ toggleSideBar, user }: NavigationBarProps) => {
   const dispatch = useDispatch();
-  const theme = useTheme();
+  const theme = useCustomTheme();
   const [anchorElement, setAnchorElement] = useState(null);
   const isMenuOpen = Boolean(anchorElement);
 
@@ -54,7 +54,7 @@ const NavigationBar = ({ toggleSideBar, user }: NavigationBarProps) => {
             borderRadius="9px"
             gap="3rem"
             padding="0.1rem 1.5rem"
-            sx={{ backgroundColor: theme.palette.background.default }}
+            sx={{ backgroundColor: theme.palette.background.alt }}
           >
             <Input placeholder="Search..." />
             <IconButton>
@@ -97,7 +97,7 @@ const NavigationBar = ({ toggleSideBar, user }: NavigationBarProps) => {
                     sx={{
                       fontWeight: 'bold',
                       fontSize: '0.85rem',
-                      color: theme.palette.secondary.main,
+                      color: theme.palette.secondary[100],
                     }}
                   >
                     {user.firstName}
@@ -105,14 +105,14 @@ const NavigationBar = ({ toggleSideBar, user }: NavigationBarProps) => {
                   <Typography
                     sx={{
                       fontSize: '0.75rem',
-                      color: theme.palette.secondary.main,
+                      color: theme.palette.secondary[200],
                     }}
                   >
                     {user.occupation}
                   </Typography>
                 </Box>
                 <ArrowDropDownOutlined
-                  sx={{ color: theme.palette.secondary.light, fontSize: '25px' }}
+                  sx={{ color: theme.palette.secondary[300], fontSize: '25px' }}
                 />
               </Button>
               <Menu

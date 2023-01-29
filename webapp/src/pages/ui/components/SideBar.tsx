@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  useTheme,
   Box,
   Drawer,
   Typography,
@@ -33,6 +32,7 @@ import {
 import { FlexBoxInBetween } from './styled';
 import { Path } from '@local/pages/path';
 import { User } from '@local/pages/models/user';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 const sections = [
   { name: 'Dashboard', icon: <HomeOutlined />, path: Path.DASHBOARD },
@@ -77,7 +77,7 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
   const { pathname } = useLocation();
   const [activePage, setActivePage] = useState('');
   const navigate = useNavigate();
-  const theme = useTheme();
+  const theme = useCustomTheme();
 
   useEffect(() => {
     // every time the URL pathname changes we set the active page to the current page
@@ -99,8 +99,8 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
           sx={{
             'width': drawerWidth,
             '& .MuiDrawer-paper': {
-              color: theme.palette.secondary.main,
-              backgroundColor: theme.palette.background.default,
+              color: theme.palette.secondary[200],
+              backgroundColor: theme.palette.background.alt,
               boxSizing: 'border-box',
               borderWidth: isDesktop ? 0 : '2px',
               width: drawerWidth,
@@ -140,11 +140,11 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
                       onClick={() => listItemClickHandler(name, path!)}
                       sx={{
                         backgroundColor:
-                          activePage === name ? theme.palette.secondary.main : 'transparent',
+                          activePage === name ? theme.palette.secondary[300] : 'transparent',
                         color:
                           activePage === name
-                            ? theme.palette.primary.main
-                            : theme.palette.secondary.main,
+                            ? theme.palette.primary[600]
+                            : theme.palette.secondary[100],
                       }}
                     >
                       <ListItemIcon
@@ -152,8 +152,8 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
                           marginLeft: '2rem',
                           color:
                             activePage === name
-                              ? theme.palette.primary.main
-                              : theme.palette.secondary.main,
+                              ? theme.palette.primary[600]
+                              : theme.palette.secondary[200],
                         }}
                       >
                         {icon}
@@ -182,7 +182,7 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
                     sx={{
                       fontWeight: 'bold',
                       fontSize: '0.9rem',
-                      color: theme.palette.secondary.main,
+                      color: theme.palette.secondary[100],
                     }}
                   >
                     {user.firstName}
@@ -190,13 +190,13 @@ const SideBar = ({ isOpen, toggleOpen, isDesktop, drawerWidth, user }: SideBarPr
                   <Typography
                     sx={{
                       fontSize: '0.8rem',
-                      color: theme.palette.secondary.main,
+                      color: theme.palette.secondary[200],
                     }}
                   >
                     {user.occupation}
                   </Typography>
                 </Box>
-                <SettingsOutlined sx={{ color: theme.palette.secondary.light, fontSize: '25px' }} />
+                <SettingsOutlined sx={{ color: theme.palette.secondary[300], fontSize: '25px' }} />
               </FlexBoxInBetween>
             </Box>
           )}

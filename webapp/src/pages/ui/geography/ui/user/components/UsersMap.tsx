@@ -1,13 +1,14 @@
 import React from 'react';
-import { useTheme, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { ResponsiveChoropleth } from '@nivo/geo';
 
 import { useGetGeographyUsersQuery } from '@local/redux-store/api/api';
 import { geographyMapData } from '@local/pages/ui/geography/models/geography-map-data';
 import { UsersPerCountry } from '@local/pages/ui/geography/models/user-statistics';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 const UsersMap = () => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
   const { data, isLoading } = useGetGeographyUsersQuery();
 
   const getDataForMap = (usersStatsData: UsersPerCountry[]) => {
@@ -29,7 +30,7 @@ const UsersMap = () => {
       sx={{
         marginTop: '40px',
         height: '75vh',
-        border: `1px solid ${theme.palette.secondary.main}`,
+        border: `1px solid ${theme.palette.secondary[200]}`,
         borderRadius: '4px',
       }}
     >
@@ -40,15 +41,15 @@ const UsersMap = () => {
           theme={{
             axis: {
               domain: {
-                line: { stroke: theme.palette.secondary.main },
+                line: { stroke: theme.palette.secondary[200] },
               },
-              legend: { text: { fill: theme.palette.secondary.main } },
+              legend: { text: { fill: theme.palette.secondary[200] } },
               ticks: {
-                line: { stroke: theme.palette.secondary.main, strokeWidth: 1 },
-                text: { fill: theme.palette.secondary.main },
+                line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
+                text: { fill: theme.palette.secondary[200] },
               },
             },
-            legends: { text: { fill: theme.palette.secondary.main } },
+            legends: { text: { fill: theme.palette.secondary[200] } },
             tooltip: { container: { color: theme.palette.primary.main } },
           }}
           features={geographyMapData.features}
@@ -73,14 +74,14 @@ const UsersMap = () => {
               itemWidth: 94,
               itemHeight: 18,
               itemDirection: 'left-to-right',
-              itemTextColor: theme.palette.secondary.main,
+              itemTextColor: theme.palette.secondary[200],
               itemOpacity: 0.85,
               symbolSize: 18,
               effects: [
                 {
                   on: 'hover',
                   style: {
-                    itemTextColor: theme.palette.background.default,
+                    itemTextColor: theme.palette.background.alt,
                     itemOpacity: 1,
                   },
                 },

@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
-import { useTheme, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { ResponsiveLine } from '@nivo/line';
 
 import { StatisticsView } from '@local/pages/ui/components/models/statistics-view';
 import { useGetOverallStatisticsQuery } from '@local/redux-store/api/api';
 import { MonthlyData } from '@local/pages/models/monthly-data';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 interface OverallStatisticsChartProps {
   view: StatisticsView;
@@ -17,7 +18,7 @@ type LineChartCoordinates = {
 };
 
 const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatisticsChartProps) => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
   const { data, isLoading } = useGetOverallStatisticsQuery();
 
   // recalculate totalSalesLine and totalUnitsLine whenever one of the dependencies in the useMemo hook change
@@ -35,7 +36,7 @@ const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatistics
     };
     const totalSoldUnitsLine = {
       id: 'totalSoldUnits',
-      color: theme.palette.secondary.dark,
+      color: theme.palette.secondary[600],
       data: [] as LineChartCoordinates[],
     };
 
@@ -74,15 +75,15 @@ const OverallStatisticsChart = ({ view, isDashboard = false }: OverallStatistics
             theme={{
               axis: {
                 domain: {
-                  line: { stroke: theme.palette.secondary.main },
+                  line: { stroke: theme.palette.secondary[200] },
                 },
-                legend: { text: { fill: theme.palette.secondary.main } },
+                legend: { text: { fill: theme.palette.secondary[200] } },
                 ticks: {
-                  line: { stroke: theme.palette.secondary.main, strokeWidth: 1 },
-                  text: { fill: theme.palette.secondary.main },
+                  line: { stroke: theme.palette.secondary[200], strokeWidth: 1 },
+                  text: { fill: theme.palette.secondary[200] },
                 },
               },
-              legends: { text: { fill: theme.palette.secondary.main } },
+              legends: { text: { fill: theme.palette.secondary[200] } },
               tooltip: { container: { color: theme.palette.primary.main } },
             }}
             animate={true}

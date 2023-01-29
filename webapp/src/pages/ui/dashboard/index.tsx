@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useTheme, useMediaQuery, Box, Button, Typography } from '@mui/material';
+import { useMediaQuery, Box, Button } from '@mui/material';
 import { DownloadOutlined, Email, PointOfSale, PersonAdd, Traffic } from '@mui/icons-material';
 
 import { useGetDashboardStatisticsQuery } from '@local/redux-store/api/api';
@@ -11,9 +11,10 @@ import OverallStatisticsChart from '@local/pages/ui/components/OverallStatistics
 import { StatisticsView } from '@local/pages/ui/components/models/statistics-view';
 import DashboardTransactionStatisticsList from '@local/pages/ui/dashboard/components/DashboardTransactionStatisticsList';
 import DashboardBreakdownChart from '@local/pages/ui/dashboard/components/DashboardBreakdownChart';
+import { useCustomTheme } from '@local/pages/ui/components/hooks/custom-theme';
 
 const DashboardPage = () => {
-  const theme = useTheme();
+  const theme = useCustomTheme();
   const isNonMediumScreen = useMediaQuery('(min-width: 1200px)');
   const globalState = useSelector((state: any) => state.global);
   const { year, month, day } = globalState;
@@ -35,7 +36,7 @@ const DashboardPage = () => {
         <Box>
           <Button
             sx={{
-              color: theme.palette.background.default,
+              color: theme.palette.background.alt,
               backgroundColor: theme.palette.secondary.light,
               fontSize: '14px',
               fontWeight: 'bold',
@@ -66,21 +67,21 @@ const DashboardPage = () => {
             value={overallStatisticsData.totalCustomers}
             increase="+14%"
             description="Since last month"
-            icon={<Email sx={{ color: theme.palette.secondary.light, fontSize: '26px' }} />}
+            icon={<Email sx={{ color: theme.palette.secondary[300], fontSize: '26px' }} />}
           />
           <DashboardOverallStatisticsBox
             title="Sales Today"
             value={selectedDayData.totalSalesPrice}
             increase="+21%"
             description="Since last month"
-            icon={<PointOfSale sx={{ color: theme.palette.secondary.light, fontSize: '26px' }} />}
+            icon={<PointOfSale sx={{ color: theme.palette.secondary[300], fontSize: '26px' }} />}
           />
 
           <Box
             sx={{
               gridColumn: 'span 8',
               gridRow: 'span 2',
-              // backgroundColor: theme.palette.secondary.light,
+              backgroundColor: theme.palette.background.alt,
               padding: '1rem',
               borderRadius: '0.55rem',
             }}
@@ -93,14 +94,14 @@ const DashboardPage = () => {
             value={selectedMonthData.totalSalesPrice}
             increase="+5%"
             description="Since last month"
-            icon={<PersonAdd sx={{ color: theme.palette.secondary.light, fontSize: '26px' }} />}
+            icon={<PersonAdd sx={{ color: theme.palette.secondary[300], fontSize: '26px' }} />}
           />
           <DashboardOverallStatisticsBox
             title="Yearly Sales"
             value={overallStatisticsData.yearlySalesTotalPrice}
             increase="+43%"
             description="Since last year"
-            icon={<Traffic sx={{ color: theme.palette.secondary.light, fontSize: '26px' }} />}
+            icon={<Traffic sx={{ color: theme.palette.secondary[300], fontSize: '26px' }} />}
           />
 
           <DashboardTransactionStatisticsList transactions={data.transactions} />
