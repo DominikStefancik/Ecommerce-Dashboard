@@ -41,6 +41,9 @@ const DashboardPage = () => {
               fontSize: '14px',
               fontWeight: 'bold',
               padding: '10px 20px',
+              '&:hover': {
+                backgroundColor: theme.palette.secondary.dark,
+              },
             }}
           >
             <DownloadOutlined sx={{ marginRight: '10px' }} />
